@@ -1,0 +1,206 @@
+{
+  ["colors"]	= {
+      ["顶栏"]	= "#ff3962d3" ;
+      ["侧滑栏背景"]	= "#ffffffff" ;
+      ["悬浮按钮"]	= "#ff33a7aa" ;
+      ["顶栏部件触摸"]	= "#22ffffff" ;
+      ["搜索栏背景"]	= "#ffffffff" ;
+      ["顶栏部件"]	= "#ffffffff" ;
+      ["搜索栏部件触摸"]	= "#44000000" ;
+      ["侧滑栏列表文字"]	= "#ff333333" ;
+      ["侧滑栏列表图标"]	= "#ff757575" ;
+      ["进度条"]	= "#00000000" ;
+      ["导航栏"]	= "#ff2c2e43" ;
+      ["悬浮按钮图标"]	= "#ffffffff" ;
+      ["搜索栏部件"]	= "#ff888888" ;
+      ["搜索栏提示文字"]	= "#80000000" ;
+      } ;
+  ["web_control"]	= {
+      [1]	= {
+          ["remove_element"]	= "ves,ves1" ;
+          ["url"]	= "www.lanzou.com" ;
+          ["js"]	= "" ;
+          } ;
+      } ;
+  ["sidebar"]	= {
+      ["启用顶部图片"]	= false ;
+      ["items"]	= {
+          [1]	= {
+              ["onClick"]	= "加载网页(\"https://pan.baidu.com/wap/home\")" ;
+              ["name"]	= "百度网盘" ;
+              ["icon"]	= "drawable/data.png" ;
+              } ;
+          [2]	= {
+              ["onClick"]	= "加载网页(\"https://e.189.cn/wap/mine/show.do\")" ;
+              ["icon"]	= "drawable/box_download.png" ;
+              ["name"]	= "天翼云" ;
+              } ;
+          [3]	= {
+              ["onClick"]	= "加载网页(\"https://www.weiyun.com/disk\")" ;
+              ["icon"]	= "drawable/box_download.png" ;
+              ["name"]	= "微云" ;
+              } ;
+          } ;
+      ["启用"]	= true ;
+      } ;
+  ["switch"]	= {
+      ["显示状态栏"]	= true ;
+      ["支持滑动页面"]	= false ;
+      ["启用启动图"]	= false ;
+      ["横屏"]	= false ;
+      } ;
+  ["events"]	= {
+      ["程序启动"]	= "--程序启动时会执行的事件\
+--程序启动时会执行的事件\
+--程序启动时会执行的事件\
+\
+--程序启动时会执行的事件\
+webView.addJavascriptInterface({},\"JsInterface\")\
+--退出二次确认\
+function onKeyDown(key)\
+  if key==4 then\
+    if drawerLayout.isDrawerOpen(3) then\
+      drawerLayout.closeDrawer(3)\
+    elseif webView.canGoBack() then\
+      webView.goBack()\
+    else\
+      对话框()\
+.设置标题(\"退出\")\
+.设置消息(\"你确定要退出网盘吗?\")\
+.设置积极按钮(\"确定\",function()\
+  退出页面()\
+end)\
+.设置消极按钮(\"取消\")\
+.显示()\
+     end\
+        end\
+      return true\
+   end\
+ \
+ --侧滑\
+--程序启动时会执行的事件\
+--由JunSilck二次整合\
+function CircleButton(view,InsideColor,radiu)\
+  import \"android.graphics.drawable.GradientDrawable\"\
+  drawable = GradientDrawable() \
+  drawable.setShape(GradientDrawable.RECTANGLE) \
+  drawable.setColor(InsideColor)\
+  drawable.setCornerRadii({radiu,radiu,radiu,radiu,radiu,radiu,radiu,radiu});\
+  view.setBackgroundDrawable(drawable)\
+end\
+角度=50\
+控件id=sidebar\
+控件颜色=0xFFFFFFFF\
+CircleButton(控件id,控件颜色,角度)\
+\
+flt=sidebar.getLayoutParams( )\
+flt.setMargins(200, 200, 800, 450)\
+sidebar.setLayoutParams(flt)\
+--以上代码是侧滑栏圆角，高度，宽度，和上下边距的代码。\
+\
+--获取页面根布局\
+local lay=drawerLayout.getChildAt(1)\
+\
+--监听侧滑滑动事件\
+local pio=this.getWidth()*0.1\
+drawerLayout.setDrawerListener(DrawerLayout.DrawerListener{\
+  onDrawerSlide=function(v,i)\
+    lay.setScaleX(1-i/13.5).setScaleY(1-i/12.5)--页面缩放\
+    lay.setTranslationX((({0,0,1,0,-1})[v.LayoutParams.gravity])*(i*0.5*pio))--页面位移(其中那段奇怪的表是用于判断位移方向，不过依然仅支持左右侧滑)\
+    --sidebar.setScaleX(i).setScaleY(i)--侧滑栏缩放\
+  end})\
+--以上是侧滑栏做边距和缩放动画的代码\
+--可自行修改，出bug别找我\
+--可添加侧滑栏图片，上方还是全侧滑栏都可以，有需要圆角的地方请自行抠图\
+--希望珍惜别的工程开源\
+\
+\
+import\"tool.downpop\"\
+import \"android.text.format.Formatter\"\
+\
+webView.setDownloadListener{\
+  onDownloadStart=function(url,userAgent,contentDisposition,mimetype,contentLength)\
+    文件名=URLUtil.guessFileName(url, contentDisposition, mimeType);\
+    下载链接=url\
+    文件类型=mimetype\
+    文件大小=Formatter.formatFileSize(this, contentLength)\
+    存放地址=\"蔚蓝下载/文件\"\
+    downPop(url,文件名,存放地址)\
+  end\
+}\
+\
+function onKeyDown(key,event)\
+  if(key==4)then\
+    if pop~= nil then\
+      downPop()\
+    elseif(webView.canGoBack()) then\
+      webView.goBack()\
+    else\
+      退出页面()\
+    end\
+    return true\
+  end\
+end" ;
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+浏览器对象，新标题=..." ;
+      ["网页即将加载"]	= "--浏览器即将加载新的网页时执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=...\
+设置顶栏标题(webView.title)" ;
+      } ;
+  ["web"]	= {
+      ["启用长按菜单"]	= true ;
+      ["启动网页"]	= "http://www.lanzou.com/u" ;
+      ["支持打开外部应用"]	= true ;
+      ["启用进度条"]	= true ;
+      ["网页沉浸"]	= false ;
+      ["浏览器用户标识"]	= "自定义" ;
+      ["customUa"]	= "Mozilla/5.0 (Symbian/3; Series60/5.2 NokiaN8-00/012.002; Profile/MIDP-2.1 Configuration/CLDC-1.1 ) AppleWebKit/533.4 (KHTML, like Gecko) NokiaBrowser/7.3.0 Mobile Safari/533.4 3gpp-gba" ;
+      } ;
+  ["fltBtn"]	= {
+      ["显示"]	= false ;
+      ["图标"]	= "" ;
+      ["点击事件"]	= "--悬浮按钮点击时执行的事件" ;
+      } ;
+  ["toolbar"]	= {
+      ["搜索URL"]	= "" ;
+      ["输入栏模式"]	= true ;
+      ["搜索框提示"]	= "" ;
+      ["icon_btns"]	= {
+          [1]	= {
+              ["icon"]	= "chevron_left" ;
+              ["onClick"]	= "网页后退()" ;
+              } ;
+          [2]	= {
+              ["icon"]	= "checkbox_blank_circle_outline" ;
+              ["onClick"]	= "刷新网页()" ;
+              } ;
+          [3]	= {
+              ["icon"]	= "chevron_right" ;
+              ["onClick"]	= "网页前进()" ;
+              } ;
+          } ;
+      ["启用搜索功能"]	= false ;
+      ["menus"]	= {
+          [1]	= {
+              ["onClick"]	= "退出页面()" ;
+              ["name"]	= "退出" ;
+              } ;
+          } ;
+      } ;
+  ["view_attribute"]	= {
+      ["顶栏标题"]	= "网盘" ;
+      ["搜索栏圆角弧度"]	= "2dp" ;
+      ["顶栏高度"]	= "50dp" ;
+      ["顶栏阴影强度"]	= "2dp" ;
+      ["侧滑栏宽度"]	= "240dp" ;
+      ["搜索栏阴影强度"]	= "2dp" ;
+      } ;
+  } ;

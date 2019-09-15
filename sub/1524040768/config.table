@@ -1,0 +1,563 @@
+{
+  ["web"]	= {
+      ["启用进度条"]	= true ;
+      ["网页沉浸"]	= false ;
+      ["支持打开外部应用"]	= false ;
+      ["启动网页"]	= "https://h.acgcool.xyz/" ;
+      ["启用长按菜单"]	= false ;
+      ["浏览器用户标识"]	= "默认" ;
+      } ;
+  ["view_attribute"]	= {
+      ["顶栏高度"]	= "48dp" ;
+      ["搜索栏阴影强度"]	= "2dp" ;
+      ["搜索栏圆角弧度"]	= "2dp" ;
+      ["顶栏阴影强度"]	= "2dp" ;
+      ["侧滑栏宽度"]	= "240dp" ;
+      ["顶栏标题"]	= "隐藏功能" ;
+      } ;
+  ["colors"]	= {
+      ["悬浮按钮"]	= "#ff33a7aa" ;
+      ["悬浮按钮图标"]	= "#ffffffff" ;
+      ["顶栏"]	= "#ff3962d3" ;
+      ["导航栏"]	= "#ff2c2e43" ;
+      ["顶栏部件触摸"]	= "#22ffffff" ;
+      ["搜索栏背景"]	= "#ffffffff" ;
+      ["搜索栏部件触摸"]	= "#44000000" ;
+      ["搜索栏部件"]	= "#ff888888" ;
+      ["侧滑栏背景"]	= "#00000000" ;
+      ["进度条"]	= "#00000000" ;
+      ["搜索栏提示文字"]	= "#80000000" ;
+      ["侧滑栏列表图标"]	= "#ff949494" ;
+      ["侧滑栏列表文字"]	= "#ff5d5d5d" ;
+      ["顶栏部件"]	= "#ffffffff" ;
+      } ;
+  ["events"]	= {
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      ["网页即将加载"]	= "--浏览器即将加载新的网页时执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=...\
+\
+if 网页链接 == nil then\
+  while (网页链接 == nil)\
+do\
+  if (网页连接:find\"http://\")\
+  or 网页连接:find\"https://\"\
+  or 网页连接:find\".php\"\
+  or 网页连接:find\".htm\"\
+then\
+  对话框()\
+.设置标题(\"标题\")\
+.设置消息(\"消息\")\
+.设置积极按钮(\"确定\",function()\
+  显示消息(\"点击了确定\")\
+end)\
+.设置消极按钮(\"取消\")\
+.显示()\
+    end\
+  end\
+end" ;
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+浏览器对象，新标题=..." ;
+      ["程序启动"]	= "对话框()\
+.设置标题(\"关于为何无法访问\")\
+.设置消息(\"近期因为国家防火墙又封了很多网站\\n已经导致很多小黄网站无法访问了\\n所以可以点击右上角查看解决方法\")\
+.设置积极按钮(\"确定\",function()\
+end)\
+.显示()\
+\
+import \"shamrock\"\
+\
+--程序启动时会执行的事件\
+webView.addJavascriptInterface({},\"JsInterface\")\
+\
+--退出二次确认\
+function onKeyDown(key)\
+  if key==4 then\
+    if drawerLayout.isDrawerOpen(3) then\
+      drawerLayout.closeDrawer(3)\
+    elseif webView.canGoBack() then\
+      webView.goBack()\
+    else\
+      对话框()\
+.设置标题(\"退出\")\
+.设置消息(\"你确定要退出测试功能吗?\")\
+.设置积极按钮(\"确定\",function()\
+  退出页面()\
+end)\
+.设置消极按钮(\"取消\")\
+.显示()\
+     end\
+        end\
+      return true\
+   end\
+   \
+   \
+import\"tool.downpop\"\
+import \"android.text.format.Formatter\"\
+\
+webView.setDownloadListener{\
+  onDownloadStart=function(url,userAgent,contentDisposition,mimetype,contentLength)\
+    文件名=URLUtil.guessFileName(url, contentDisposition, mimeType);\
+    下载链接=url\
+    文件类型=mimetype\
+    文件大小=Formatter.formatFileSize(this, contentLength)\
+    存放地址=\"蔚蓝下载/文件\"\
+    downPop(url,文件名,存放地址)\
+  end\
+}\
+\
+function onKeyDown(key,event)\
+  if(key==4)then\
+    if pop~= nil then\
+      downPop()\
+    elseif(webView.canGoBack()) then\
+      webView.goBack()\
+    else\
+      退出页面()\
+    end\
+    return true\
+  end\
+end\
+   \
+   \
+   \
+ --侧滑\
+--程序启动时会执行的事件\
+--由JunSilck二次整合\
+function CircleButton(view,InsideColor,radiu)\
+  import \"android.graphics.drawable.GradientDrawable\"\
+  drawable = GradientDrawable() \
+  drawable.setShape(GradientDrawable.RECTANGLE) \
+  drawable.setColor(InsideColor)\
+  drawable.setCornerRadii({radiu,radiu,radiu,radiu,radiu,radiu,radiu,radiu});\
+  view.setBackgroundDrawable(drawable)\
+end\
+角度=50\
+控件id=sidebar\
+控件颜色=0xFFFFFFFF\
+CircleButton(控件id,控件颜色,角度)\
+\
+flt=sidebar.getLayoutParams( )\
+flt.setMargins(200, 200, 800, 450)\
+sidebar.setLayoutParams(flt)\
+--以上代码是侧滑栏圆角，高度，宽度，和上下边距的代码。\
+\
+--获取页面根布局\
+local lay=drawerLayout.getChildAt(1)\
+\
+--监听侧滑滑动事件\
+local pio=this.getWidth()*0.1\
+drawerLayout.setDrawerListener(DrawerLayout.DrawerListener{\
+  onDrawerSlide=function(v,i)\
+    lay.setScaleX(1-i/13.5).setScaleY(1-i/12.5)--页面缩放\
+    lay.setTranslationX((({0,0,1,0,-1})[v.LayoutParams.gravity])*(i*0.5*pio))--页面位移(其中那段奇怪的表是用于判断位移方向，不过依然仅支持左右侧滑)\
+    --sidebar.setScaleX(i).setScaleY(i)--侧滑栏缩放\
+  end})\
+--以上是侧滑栏做边距和缩放动画的代码\
+--可自行修改，出bug别找我\
+--可添加侧滑栏图片，上方还是全侧滑栏都可以，有需要圆角的地方请自行抠图\
+--希望珍惜别的工程开源\
+" ;
+      } ;
+  ["fltBtn"]	= {
+      ["显示"]	= false ;
+      ["图标"]	= "" ;
+      ["点击事件"]	= "--悬浮按钮点击时执行的事件" ;
+      } ;
+  ["web_control"]	= {
+      [8]	= {
+          ["js"]	= "" ;
+          ["url"]	= "h.acgcool.xyz" ;
+          ["remove_element"]	= "@footer" ;
+          } ;
+      [1]	= {
+          ["js"]	= "" ;
+          ["url"]	= "yuexiangzs.com" ;
+          ["remove_element"]	= "class-block,height,width,img-responsive center-block,modal-header,data-target,smaller,search_bar" ;
+          } ;
+      [2]	= {
+          ["js"]	= "var src=document.getElementsByTagName(\"iframe\")[0].src\
+var start=src.indexOf(\"z=\")+2\
+var id=src.substring(start,start+8)\
+document.getElementById(id).parentNode.parentNode.removeChild(document.getElementById(id).parentNode)" ;
+          ["url"]	= "m.mzitu.com" ;
+          ["remove_element"]	= "listsg,wxl,post-info placeholder,content_wrap,wx,@ID(header),ad_main," ;
+          } ;
+      [3]	= {
+          ["js"]	= "" ;
+          ["url"]	= "articles3.weico.cc" ;
+          ["remove_element"]	= "hl-con-col,hl-con-from,m-box-center-a,touchClass,border-top,solid,node-type,hl-from-img,m-box-col,hl-from-name" ;
+          } ;
+      [4]	= {
+          ["js"]	= "" ;
+          ["url"]	= "www.catacg.com" ;
+          ["remove_element"]	= "mar10-b pos-r l1,site-branding pos-r clearfix,menu-top l1,site-info fs12" ;
+          } ;
+      [5]	= {
+          ["js"]	= "" ;
+          ["url"]	= "nyaso.com" ;
+          ["remove_element"]	= "header row,dot2" ;
+          } ;
+      [6]	= {
+          ["js"]	= "var d=document;var s=d.createElement('script');s.setAttribute('src', 'https://greasyfork.org/scripts/7410-jskillad/code/jsKillAD.user.js');d.head.appendChild(s);" ;
+          ["url"]	= "m.6080yy.pw" ;
+          ["remove_element"]	= "//52op.net/" ;
+          } ;
+      [7]	= {
+          ["js"]	= "var d=document;var s=d.createElement('script');s.setAttribute('src', 'https://greasyfork.org/scripts/7410-jskillad/code/jsKillAD.user.js');d.head.appendChild(s);" ;
+          ["url"]	= "m.88mp4.org" ;
+          ["remove_element"]	= "logo,tbmov-notice" ;
+          } ;
+      } ;
+  ["global_js"]	= "// ==UserScript==\
+// @name        jsKillAD\
+// @namespace   jsKillAD\
+// @include     http://*\
+// @include     https://*\
+// @grant       none\
+// @version     1\
+// ==/UserScript==\
+(function () {\
+\9var bc = Array.prototype.forEach;//Callback\
+\
+\9function getStyle(o, s) {\
+\9\9if(o.style[s])//内联样式\
+\9\9\9return o.style[s];\
+\9\9else if(document.defaultView && document.defaultView.getComputedStyle){//DOM\
+\9\9\9//s = s.replace(/([A-Z])/g,'-$1').toLowerCase();\
+\9\9\9var x = document.defaultView.getComputedStyle(o,'');\
+\9\9\9return x.getPropertyValue(s);\
+\9\9}\
+\9}\
+\
+\9function testStyle(o) {\
+\9\9var s = getStyle(o, \"position\");\
+\9\9return s === \"fixed\" || s === \"absolute\";\
+\9}\
+/*\
+\9function sameDomain(o) {\
+\9\9try {\
+\9\9\9return o.document.body;\
+\9\9} catch (e) {\
+\9\9\9return  0;\
+\9\9}\
+\9}\
+*/\
+\9function isFloatLay(o) {\
+\9\9var x = o.offsetParent;\
+\9\9return !x || x.tagName === \"BODY\" || x.tagName === \"HTML\";\
+\9}\
+\
+\9function delNode(x) {\
+\9\9x.parentNode.removeChild(x);\
+\9}\
+\
+\9function scan(el) {\
+\9\9[\"iframe\", \"img\", \"object\", \"embed\", \"video\"].forEach(function(s) {\
+\9\9\9bc.call(el.getElementsByTagName(s), function(x) {\
+\9\9\9\9while (x) {\
+\9\9\9\9\9if (isFloatLay(x)) {\
+\9\9\9\9\9\9//要删除的层得同时满足二个条件\
+\9\9\9\9\9\9if (testStyle(x)) delNode(x);\
+\9\9\9\9\9\9break;\
+\9\9\9\9\9}\
+\9\9\9\9\9x = x.offsetParent;\
+\9\9\9\9}\
+\9\9\9});\
+\9\9});\
+\9}\
+\9/*\
+\9//扫描广告脚本\
+\9bc.call(document.getElementsByTagName(\"script\"), function(o) {\
+\9\9if (o.src && o.readyState !== \"complete\") delNode(o);\
+\9});\
+\9//没用哦,因为DIV中可能已经生成了元素\
+\9bc.call(document.querySelectorAll ? document.querySelectorAll(\"div>script\") : document.getElementsByTagName(\"script\"), function(x) {\
+\9\9x = x.parentNode;\
+\9\9if (x.childNodes.length === 1) delNode(x);\
+\9});\
+\9*/\
+\9document.addEventListener(\"DOMContentLoaded\", function(){scan(document);}, false);\
+\9bc.call(frames, function(x) {\
+\9\9try {\
+\9\9\9scan(x.contentDocument);\
+\9\9} catch (e) {}\
+\9});\
+})();\
+\
+\
+/*让链接可点击*/var oHead1016 = document.getElementsByTagName('body').item(0); var oScript1016 = document.createElement(\"script\"); oScript1016.type = \"text/javascript\"; oScript1016.src=\"https://greasyfork.org/scripts/342-text-to-link/code/Text%20To%20link.user.js\"; oHead1016.appendChild( oScript1016);\
+/*强制缩放*/var sc = document.createElement(\"meta\");sc.setAttribute(\"name\", \"viewport\");sc.setAttribute(\"content\", \"width=device-width, initial-scale=1, user-scalable=yes\");document.head.appendChild(sc);" ;
+  ["sidebar"]	= {
+      ["启用顶部图片"]	= false ;
+      ["启用"]	= true ;
+      ["items"]	= {
+          [1]	= {
+              ["name"]	= "软件模块" ;
+              ["icon"]	= "drawable/account.png" ;
+              ["onClick"]	= "停止加载()\
+加载网页(\"nil\")\
+import \"homelist\"" ;
+              } ;
+          [2]	= {
+              ["name"]	= "R18游戏" ;
+              ["icon"]	= "drawable/gamepad.png" ;
+              ["onClick"]	= "加载网页(\"https://www.thelunai.ml/MainZ/HGame.html\")" ;
+              } ;
+          [3]	= {
+              ["name"]	= "Sarbe抱枕<磁力连接<里番<本子" ;
+              ["icon"]	= "drawable/image_filter_tilt_shift.png" ;
+              ["onClick"]	= "加载网页(\"https://saber.love/tag/hentai\")" ;
+              } ;
+          [4]	= {
+              ["name"]	= "里世界" ;
+              ["icon"]	= "drawable/beaker_outline.png" ;
+              ["onClick"]	= "加载网页(\"https://www.catacg.com/\")" ;
+              } ;
+          [5]	= {
+              ["name"]	= "伦理电影1" ;
+              ["icon"]	= "drawable/movie.png" ;
+              ["onClick"]	= "加载网页(\"http://m.88mp4.org\")" ;
+              } ;
+          [6]	= {
+              ["name"]	= "伦理电影2" ;
+              ["icon"]	= "drawable/movie.png" ;
+              ["onClick"]	= "加载网页(\"http://m.6080yy.pw\")" ;
+              } ;
+          [7]	= {
+              ["name"]	= "G车库" ;
+              ["icon"]	= "drawable/car.png" ;
+              ["onClick"]	= "加载网页(\"https://www.galgame.lol/archives/category/anime/r18-anime\")" ;
+              } ;
+          [8]	= {
+              ["name"]	= "百合图片" ;
+              ["icon"]	= "drawable/gender_female.png" ;
+              ["onClick"]	= "加载网页(\"http://yuriimg.com\")" ;
+              } ;
+          [9]	= {
+              ["name"]	= "寂月神社" ;
+              ["icon"]	= "drawable/beer.png" ;
+              ["onClick"]	= "加载网页(\"https://www.jiyue.com/\")" ;
+              } ;
+          [10]	= {
+              ["name"]	= "Ohentai" ;
+              ["icon"]	= "drawable/account.png" ;
+              ["onClick"]	= "加载网页(\"https://ohentai.org\")" ;
+              } ;
+          [11]	= {
+              ["name"]	= "Manyvids" ;
+              ["icon"]	= "drawable/account.png" ;
+              ["onClick"]	= "加载网页(\"https://www.manyvids.com\")" ;
+              } ;
+          [12]	= {
+              ["name"]	= "Watchjavidol" ;
+              ["icon"]	= "drawable/youtube_play.png" ;
+              ["onClick"]	= "加载网页(\"https://watchjavidol.com/\")" ;
+              } ;
+          [13]	= {
+              ["name"]	= "Empflix" ;
+              ["icon"]	= "drawable/youtube_play.png" ;
+              ["onClick"]	= "加载网页(\"https://www.empflix.com/\")" ;
+              } ;
+          [14]	= {
+              ["name"]	= "Nhentai<本子>" ;
+              ["icon"]	= "drawable/youtube_play.png" ;
+              ["onClick"]	= "加载网页(\"https://nhentai.net/\")" ;
+              } ;
+          [15]	= {
+              ["name"]	= "Anidex<种子>" ;
+              ["icon"]	= "drawable/arrow_down.png" ;
+              ["onClick"]	= "加载网页(\"https://anidex.info\")" ;
+              } ;
+          [16]	= {
+              ["name"]	= "hentai2w" ;
+              ["icon"]	= "drawable/car.png" ;
+              ["onClick"]	= "加载网页(\"https://hentai2w.com/\")" ;
+              } ;
+          [17]	= {
+              ["name"]	= "星空BT" ;
+              ["icon"]	= "drawable/car.png" ;
+              ["onClick"]	= "加载网页(\"https://bt.cosxcos.xyz/\")" ;
+              } ;
+          [18]	= {
+              ["name"]	= "伦理-迅雷哥" ;
+              ["icon"]	= "drawable/car.png" ;
+              ["onClick"]	= "加载网页(\"https://www.xunleidy.cc/lun/\")" ;
+              } ;
+          } ;
+      } ;
+  ["toolbar"]	= {
+      ["输入栏模式"]	= false ;
+      ["启用搜索功能"]	= false ;
+      ["menus"]	= {
+          [1]	= {
+              ["onClick"]	= "加载网页(\"https://www.lanzous.com/i2kmape\")" ;
+              ["name"]	= "迅雷下载" ;
+              } ;
+          [2]	= {
+              ["onClick"]	= "对话框()\
+.设置标题(\"信息\")\
+.设置消息(\"专属名词\\n里番，R18的动画\\n本子，R18的漫画\\n\\n磁力连接\\n带有magnet:?xt=开头的都是磁力链接可以用迅雷下载\\n\\n翻墙\\n部分内容或软件或网站无法访问\\n也就是所说的墙，可以用谷歌空间添加应用之后访问\\n\\n关于&免责\\n内容均来自互联网，本人仅整合，向我申请使用权限则证明你同意出任何事都由自己负责\\n未满18岁请自重\")\
+.设置积极按钮(\"确定\",function()\
+end)\
+.显示()" ;
+              ["name"]	= "关于本页及其他注意事项" ;
+              } ;
+          [3]	= {
+              ["onClick"]	= "对话框()\
+.设置标题(\"提示\")\
+.设置消息(\"先使用修改DNS方法,按照步骤慢慢来\\n必须连带hosts也修改了\\n特别是蔚蓝hosts\\n挂VPN虽然可以访问但是会卡\\n不然你只能用软件玩了\")\
+.设置积极按钮(\"确定\",function()\
+  items={}\
+table.insert(items,\"修改DNS\")\
+table.insert(items,\"挂VPN\")\
+\
+\
+AlertDialog.Builder(this)\
+.setTitle(\"选择方法\")\
+.setItems(items,{onClick=function(l,v)\
+if items[v+1]==\"修改DNS\" then\
+  对话框()\
+.设置标题(\"提示\")\
+.设置消息(\"点击确定打开教程\\n此方法用到Daedalus不要使用本地WiFi修改方法\\nDNS使用谷歌和FBI的\\nHosts也要弄特别是 蔚蓝hosts\\n这样就可以访问大部分网站了\")\
+.设置积极按钮(\"确定\",function()\
+  加载网页(\"https://www.thelunai.ml/2019/02/Daedalus/\")\
+end)\
+.显示()\
+\
+\
+\
+\
+elseif items[v+1]==\"挂VPN\" then\
+对话框()\
+.设置标题(\"VPN提示\")\
+.设置消息(\"点击确定加载网页/n这个是要下载VPN软件来进行代理的\")\
+.设置积极按钮(\"确定\",function()\
+  加载网页(\"https://www.thelunai.ml/2019/02/VPN/\")\
+end)\
+.显示()\
+\
+end\
+end})\
+.show()\
+\
+end)\
+.显示()\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+" ;
+              ["name"]	= "无法打开/访问点我" ;
+              } ;
+          [4]	= {
+              ["onClick"]	= "--url=webView.getUrl()\
+--进入子页面(\"电脑版页面\",{链接=url})\
+if Seu==nil then\13\
+  弹出消息(\"电脑模式\")\
+  webView.getSettings().setUserAgentString(\"Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko\")\
+  Seu=\"H\"\13\
+  刷新网页()\
+else\13\
+弹出消息(\"手机模式\")\
+  webView.getSettings().setUserAgentString(\"Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36\") \13\
+  Seu=nil\13\
+  刷新网页()\
+end\13" ;
+              ["name"]	= "电脑模式切换" ;
+              } ;
+          [5]	= {
+              ["name"]	= "软件预卸" ;
+              ["onClick"]	= "items={}加载网页(\"网页链接\")\
+table.insert(items,\"小草\")\
+table.insert(items,\"哔咔\")\
+table.insert(items,\"JAViewer\")\
+table.insert(items,\"EhViewer\")\
+\
+AlertDialog.Builder(this)\
+.setTitle(\"选择需要预卸的软件\")\
+.setItems(items,{onClick=function(l,v)\
+if items[v+1]==\"小草\" then\
+卸载app(\"com.cl.newt66y\")\
+elseif items[v+1]==\"哔咔\" then\
+卸载app(\"com.picacomic.fregata\")\
+elseif items[v+1]==\"JAViewer\" then\
+卸载app(\"io.github.javiewer\")\
+elseif items[v+1]==\"EhViewer\" then\
+卸载app(\"com.hippo.ehviewer\")\
+\
+end\
+end})\
+.show()\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+" ;
+              } ;
+          [6]	= {
+              ["onClick"]	= "退出页面()" ;
+              ["name"]	= "退出子页" ;
+              } ;
+          } ;
+      ["icon_btns"]	= {
+          [4]	= {
+              ["icon"]	= "chevron_right" ;
+              ["onClick"]	= "网页前进()" ;
+              } ;
+          [1]	= {
+              ["icon"]	= "screen_rotation" ;
+              ["onClick"]	= "if SetHSP==nil then\13\
+  --横屏\13\
+  activity.setRequestedOrientation(0); \13\
+  SetHSP=\"H\"\13\
+else\13\
+  --竖屏\13\
+  activity.setRequestedOrientation(1); \13\
+  SetHSP=nil\13\
+end\13\
+--复制粘贴到各种点击事件里\13\
+" ;
+              } ;
+          [2]	= {
+              ["icon"]	= "chevron_left" ;
+              ["onClick"]	= "网页后退()" ;
+              } ;
+          [3]	= {
+              ["icon"]	= "checkbox_blank_circle_outline" ;
+              ["onClick"]	= "刷新网页()" ;
+              } ;
+          } ;
+      ["搜索框提示"]	= "作者不详完" ;
+      ["搜索URL"]	= "https://www.baidu.com/s?wd=%s" ;
+      } ;
+  ["switch"]	= {
+      ["支持滑动页面"]	= false ;
+      ["显示状态栏"]	= false ;
+      ["启用启动图"]	= true ;
+      ["横屏"]	= false ;
+      } ;
+  } ;

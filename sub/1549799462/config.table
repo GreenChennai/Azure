@@ -1,0 +1,184 @@
+{
+  ["switch"]	= {
+      ["支持滑动页面"]	= false ;
+      ["横屏"]	= false ;
+      ["显示状态栏"]	= true ;
+      ["启用启动图"]	= false ;
+      } ;
+  ["web_control"]	= {
+      [2]	= {
+          ["remove_element"]	= "g-hd hd-you" ;
+          ["js"]	= "" ;
+          ["url"]	= "https://passport.126.com/ydzj/maildl?product=mail126&pdconf=yddl_mail126_conf&mc=146E1F&curl=https%3A%2F%2Fmail.126.com%2Fentry%2Fcgi%2Fntesdoor%3Ffrom%3Dsmart%26language%3D0%26style%3D11%26destip%3D192.168.202.48%26allssl%3Dfalse%26df%3Dsmart_android" ;
+          } ;
+      [1]	= {
+          ["remove_element"]	= "g-hd hd-you" ;
+          ["js"]	= "" ;
+          ["url"]	= "https://dl.reg.163.com/ydzj/maildl?product=mail163&pdconf=yddl_mail163_conf&mc=0F6099&curl=https%3A%2F%2Fmail.163.com%2Fentry%2Fcgi%2Fntesdoor%3Ffrom%3Dsmart%26language%3D0%26style%3D11%26allssl%3Dfalse%26destip%3D192.168.193.48%26df%3Dsmart_android" ;
+          } ;
+      } ;
+  ["toolbar"]	= {
+      ["输入栏模式"]	= true ;
+      ["搜索框提示"]	= "" ;
+      ["启用搜索功能"]	= false ;
+      ["menus"]	= {
+          [1]	= {
+              ["onClick"]	= "退出页面()" ;
+              ["name"]	= "退出" ;
+              } ;
+          } ;
+      ["搜索URL"]	= "" ;
+      ["icon_btns"]	= {
+          [1]	= {
+              ["onClick"]	= "网页后退()" ;
+              ["icon"]	= "chevron_left" ;
+              } ;
+          [2]	= {
+              ["onClick"]	= "刷新网页()" ;
+              ["icon"]	= "checkbox_blank_circle_outline" ;
+              } ;
+          [3]	= {
+              ["onClick"]	= "网页前进()" ;
+              ["icon"]	= "chevron_right" ;
+              } ;
+          } ;
+      } ;
+  ["colors"]	= {
+      ["搜索栏背景"]	= "#ffffffff" ;
+      ["顶栏"]	= "#ff3962d3" ;
+      ["导航栏"]	= "#ff2c2e43" ;
+      ["搜索栏提示文字"]	= "#80000000" ;
+      ["侧滑栏列表图标"]	= "#ff757575" ;
+      ["进度条"]	= "#00000000" ;
+      ["搜索栏部件触摸"]	= "#44000000" ;
+      ["侧滑栏列表文字"]	= "#ff333333" ;
+      ["侧滑栏背景"]	= "#ffffffff" ;
+      ["搜索栏部件"]	= "#ff888888" ;
+      ["顶栏部件"]	= "#ffffffff" ;
+      ["悬浮按钮图标"]	= "#ffffffff" ;
+      ["顶栏部件触摸"]	= "#22ffffff" ;
+      ["悬浮按钮"]	= "#ff33a7aa" ;
+      } ;
+  ["web"]	= {
+      ["浏览器用户标识"]	= "默认" ;
+      ["支持打开外部应用"]	= false ;
+      ["启用进度条"]	= true ;
+      ["网页沉浸"]	= false ;
+      ["启动网页"]	= "https://w.mail.qq.com/cgi-bin/loginpage?f=xhtml&kvclick=loginpage|app_push|enter|android&ad=false&f=xhtml" ;
+      ["启用长按菜单"]	= true ;
+      } ;
+  ["events"]	= {
+      ["程序启动"]	= "--程序启动时会执行的事件\
+\
+--退出二次确认\
+function onKeyDown(key)\
+  if key==4 then\
+    if drawerLayout.isDrawerOpen(3) then\
+      drawerLayout.closeDrawer(3)\
+    elseif webView.canGoBack() then\
+      webView.goBack()\
+    else\
+      对话框()\
+.设置标题(\"退出\")\
+.设置消息(\"你确定要退出邮箱吗?\")\
+.设置积极按钮(\"确定\",function()\
+  退出页面()\
+end)\
+.设置消极按钮(\"取消\")\
+.显示()\
+     end\
+        end\
+      return true\
+   end\
+   \
+   \
+   \
+   \
+   \
+   \
+ --侧滑\
+--程序启动时会执行的事件\
+--由JunSilck二次整合\
+function CircleButton(view,InsideColor,radiu)\
+  import \"android.graphics.drawable.GradientDrawable\"\
+  drawable = GradientDrawable() \
+  drawable.setShape(GradientDrawable.RECTANGLE) \
+  drawable.setColor(InsideColor)\
+  drawable.setCornerRadii({radiu,radiu,radiu,radiu,radiu,radiu,radiu,radiu});\
+  view.setBackgroundDrawable(drawable)\
+end\
+角度=50\
+控件id=sidebar\
+控件颜色=0xFFFFFFFF\
+CircleButton(控件id,控件颜色,角度)\
+\
+flt=sidebar.getLayoutParams( )\
+flt.setMargins(200, 200, 800, 450)\
+sidebar.setLayoutParams(flt)\
+--以上代码是侧滑栏圆角，高度，宽度，和上下边距的代码。\
+\
+--获取页面根布局\
+local lay=drawerLayout.getChildAt(1)\
+\
+--监听侧滑滑动事件\
+local pio=this.getWidth()*0.1\
+drawerLayout.setDrawerListener(DrawerLayout.DrawerListener{\
+  onDrawerSlide=function(v,i)\
+    lay.setScaleX(1-i/13.5).setScaleY(1-i/12.5)--页面缩放\
+    lay.setTranslationX((({0,0,1,0,-1})[v.LayoutParams.gravity])*(i*0.5*pio))--页面位移(其中那段奇怪的表是用于判断位移方向，不过依然仅支持左右侧滑)\
+    --sidebar.setScaleX(i).setScaleY(i)--侧滑栏缩放\
+  end})\
+--以上是侧滑栏做边距和缩放动画的代码\
+--可自行修改，出bug别找我\
+--可添加侧滑栏图片，上方还是全侧滑栏都可以，有需要圆角的地方请自行抠图\
+--希望珍惜别的工程开源" ;
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+浏览器对象，新标题=..." ;
+      ["网页即将加载"]	= "--浏览器即将加载新的网页时执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=...\
+\
+设置顶栏标题(webView.title)" ;
+      } ;
+  ["view_attribute"]	= {
+      ["搜索栏阴影强度"]	= "2dp" ;
+      ["搜索栏圆角弧度"]	= "2dp" ;
+      ["顶栏高度"]	= "50dp" ;
+      ["顶栏标题"]	= "邮箱" ;
+      ["顶栏阴影强度"]	= "2dp" ;
+      ["侧滑栏宽度"]	= "240dp" ;
+      } ;
+  ["fltBtn"]	= {
+      ["图标"]	= "" ;
+      ["点击事件"]	= "--悬浮按钮点击时执行的事件" ;
+      ["显示"]	= false ;
+      } ;
+  ["sidebar"]	= {
+      ["启用顶部图片"]	= false ;
+      ["启用"]	= true ;
+      ["items"]	= {
+          [1]	= {
+              ["name"]	= "163邮箱" ;
+              ["onClick"]	= "加载网页(\"https://dl.reg.163.com/ydzj/maildl?product=mail163&pdconf=yddl_mail163_conf&mc=0F6099&curl=https%3A%2F%2Fmail.163.com%2Fentry%2Fcgi%2Fntesdoor%3Ffrom%3Dsmart%26language%3D0%26style%3D11%26allssl%3Dfalse%26destip%3D192.168.193.48%26df%3Dsmart_android\")" ;
+              ["icon"]	= "drawable/email.png" ;
+              } ;
+          [2]	= {
+              ["name"]	= "126邮箱" ;
+              ["onClick"]	= "加载网页(\"https://passport.126.com/ydzj/maildl?product=mail126&pdconf=yddl_mail126_conf&mc=146E1F&curl=https%3A%2F%2Fmail.126.com%2Fentry%2Fcgi%2Fntesdoor%3Ffrom%3Dsmart%26language%3D0%26style%3D11%26destip%3D192.168.202.48%26allssl%3Dfalse%26df%3Dsmart_android\")" ;
+              ["icon"]	= "drawable/email.png" ;
+              } ;
+          [3]	= {
+              ["name"]	= "邮箱大全" ;
+              ["onClick"]	= "加载网页(\"https://www.benpig.com/mail\")" ;
+              ["icon"]	= "drawable/email.png" ;
+              } ;
+          } ;
+      } ;
+  } ;

@@ -1,0 +1,871 @@
+---布局
+shamrock=
+  {
+    LinearLayout;
+    orientation='vertical';--重力属性
+    layout_width='fill';--布局宽度
+    layout_height='fill';--布局高度
+
+    {
+      PageView;--滑动视图
+      layout_weight="1";--剩余属性
+      layout_width='fill';--布局宽度
+      layout_height='fill';--布局高度
+      id="hua";
+      pages={
+        --首页布局
+        {
+          LinearLayout;
+          orientation='vertical';--重力属性
+          layout_width='fill';--布局宽度
+          layout_height='fill';--布局高度
+          {
+            ScrollView,--纵向滚动
+            layout_width='fill';--宽
+            layout_height='fill';--高
+            verticalScrollBarEnabled=false;--隐藏纵向滚动条
+            {
+              LinearLayout;
+              gravity='center';--重力属性
+              orientation='vertical';--重力属性
+              layout_width='fill';--布局宽度
+              layout_height='20dp';--布局高度
+              --第一个卡片
+              {
+                CardView;--卡片控件
+                layout_margin='10dp';--卡片边距
+                elevation='8dp';--阴影属性
+                layout_width='fill';--卡片宽度
+                CardBackgroundColor='#FF342DF5';--卡片背景颜色
+                layout_height='160dp';--卡片高度
+                radius='15dp';--卡片圆角
+                {
+                  CardView;--卡片控件
+                  layout_margin='10dp';--卡片边距
+                  elevation='8dp';--阴影属性
+                  layout_width='22%w';--卡片宽度
+                  CardBackgroundColor='#FFFFFFFF';--卡片背景颜色
+                  layout_height='5%h';--卡片高度
+                  radius='15dp';--卡片圆角
+                  layout_marginTop='110dp';--布局顶距
+                  layout_marginLeft='5%w';--布局左距
+                  onClick=function()
+                    对话框()
+.设置标题("说明")
+.设置消息("本软件是一个集各软件/网站资源\n为一体的软件\n这里你可以获取免费的资源\n接获,小说/漫画/影视/软件/技巧")
+.设置积极按钮("确定",function()
+end)
+.显示()
+                    end,
+                  {
+                    TextView;--文本控件
+                    layout_width='fill';--文本宽度
+                    layout_height='fill';--文本高度
+                    gravity='center';--重力属性
+                    textColor='#FF342DF5';--文字颜色
+                    text='说明';--显示的文字
+                    textSize='15sp';--文字大小
+                  };
+                };
+                {
+                  CardView;--卡片控件
+                  layout_margin='10dp';--卡片边距
+                  elevation='8dp';--阴影属性
+                  layout_width='22%w';--卡片宽度
+                  CardBackgroundColor='#F275F500';--卡片背景颜色
+                  layout_height='5%h';--卡片高度
+                  radius='15dp';--卡片圆角
+                  layout_marginTop='110dp';--布局顶距
+                  layout_marginLeft='35%w';--布局左距
+                  onClick=function()
+                      进入子页面("博客")
+                      end,
+                  {
+                    TextView;--文本控件
+                    layout_width='fill';--文本宽度
+                    layout_height='fill';--文本高度
+                    gravity='center';--重力属性
+                    textColor='#FFFFFF';--文字颜色
+                    text='博客';--显示的文字
+                    textSize='15sp';--文字大小
+                  };
+                };
+                {
+                  LinearLayout;
+                  gravity='center';--重力属性
+                  orientation='horizontal';--重力属性
+                  layout_width='fill';--布局宽度
+                  layout_height='160dp';--布局高度
+                  background='#0053C753';--布局背景颜色(或者图片路径)
+                  {
+                    TextView;--文本控件
+                    layout_width='fill';--文本宽度
+                    layout_height='fill';--文本高度
+                    gravity='left|top';--重力属性
+                    textColor='#FFFFFF';--文字颜色
+                    layout_margin='20dp';--布局边距
+                    text='蔚蓝﹃\n＞展现更广阔的互联网<\n        ﹄';--显示的文字
+                    textSize='25sp';--文字大小
+                  };
+                };
+              };
+--第二个卡片
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_marginTop='10dp';--布局顶距
+layout_marginLeft='10dp';--布局左距
+gravity='left';--重力属性
+layout_width='100%w';--布局宽度
+{
+TextView;--文本控件
+gravity='left';--重力属性
+textColor='#FF000000';--文字颜色
+text='推荐应用';--显示的文字
+textSize='20sp';--文字大小
+layout_marginLeft='10dp';--布局左距
+};
+};
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='2dp';--阴影属性
+layout_width='fill';--卡片宽度
+CardBackgroundColor='#FfF7FBF7';--卡片背景颜色
+layout_height='120dp';--卡片高度
+radius='15dp';--卡片圆角
+{
+HorizontalScrollView,--横向滚动
+layout_width='fill';--宽
+layout_height='fill';--高
+{
+LinearLayout;
+orientation='horizontal';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+{
+LinearLayout;
+gravity='left';--重力属性
+orientation='horizontal';--重力属性
+layout_width='fill';--布局宽度
+
+
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_width='60dp';--布局宽度
+layout_height='120dp';--布局高度
+layout_marginTop='15dp';--布局顶距
+layout_margin='15dp';--布局边距
+onClick=function()
+进入子页面("baidu贴吧")
+ end,
+{
+ImageView;--图片控件
+src='icon/baidu_tieba.png';--图片路径
+layout_width='60dp';--图片宽度
+layout_height='60dp';--图片高度
+scaleType='fitXY';--图片显示类型
+layout_marginTop='3dp';--布局顶距
+layout_gravity='center';--重力属性
+ColorFilter='#00FFAB91',--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='5dp';--布局顶距
+layout_gravity='center';--重力属性
+textColor='#FF6A6A6A';--文字颜色
+text='百度贴吧';--显示的文字
+textSize='10sp';--文字大小
+};
+};
+
+
+
+
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_width='60dp';--布局宽度
+layout_height='120dp';--布局高度
+layout_marginTop='15dp';--布局顶距
+layout_margin='15dp';--布局边距
+onClick=function()
+进入子页面("谷歌翻译")
+ end,
+{
+ImageView;--图片控件
+src='icon/jd.png';--图片路径
+layout_width='60dp';--图片宽度
+layout_height='60dp';--图片高度
+scaleType='fitXY';--图片显示类型
+layout_marginTop='3dp';--布局顶距
+layout_gravity='center';--重力属性
+ColorFilter='#00FFAB91',--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='5dp';--布局顶距
+layout_gravity='center';--重力属性
+textColor='#FF6A6A6A';--文字颜色
+text='谷歌翻译';--显示的文字
+textSize='10sp';--文字大小
+};
+};
+
+
+
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_width='60dp';--布局宽度
+layout_height='120dp';--布局高度
+layout_marginTop='15dp';--布局顶距
+layout_margin='15dp';--布局边距
+onClick=function()
+进入子页面("浏览器")
+
+end,
+{
+ImageView;--图片控件
+src='icon/card_news.png';--图片路径
+layout_width='60dp';--图片宽度
+layout_height='60dp';--图片高度
+scaleType='fitXY';--图片显示类型
+layout_marginTop='3dp';--布局顶距
+layout_gravity='center';--重力属性
+ColorFilter='#00FFAB91',--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='5dp';--布局顶距
+layout_gravity='center';--重力属性
+textColor='#FF6A6A6A';--文字颜色
+text='简约浏览器';--显示的文字
+textSize='10sp';--文字大小
+};
+};
+
+
+
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_width='60dp';--布局宽度
+layout_height='120dp';--布局高度
+layout_marginTop='15dp';--布局顶距
+layout_margin='15dp';--布局边距
+onClick=function()
+进入子页面("音乐Set")
+ end,
+{
+ImageView;--图片控件
+src='icon/video.png';--图片路径
+layout_width='60dp';--图片宽度
+layout_height='60dp';--图片高度
+scaleType='fitXY';--图片显示类型
+layout_marginTop='3dp';--布局顶距
+layout_gravity='center';--重力属性
+ColorFilter='#00FFAB91',--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='5dp';--布局顶距
+layout_gravity='center';--重力属性
+textColor='#FF6A6A6A';--文字颜色
+text='音乐';--显示的文字
+textSize='10sp';--文字大小
+};
+};
+
+
+
+
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_width='60dp';--布局宽度
+layout_height='120dp';--布局高度
+layout_marginTop='15dp';--布局顶距
+layout_margin='15dp';--布局边距
+onClick=function()
+进入子页面("网盘")
+ end,
+{
+ImageView;--图片控件
+src='icon/qihoo_yunpan.png';--图片路径
+layout_width='60dp';--图片宽度
+layout_height='60dp';--图片高度
+scaleType='fitXY';--图片显示类型
+layout_marginTop='3dp';--布局顶距
+layout_gravity='center';--重力属性
+ColorFilter='#00FFAB91',--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='5dp';--布局顶距
+layout_gravity='center';--重力属性
+textColor='#FF6A6A6A';--文字颜色
+text='网盘';--显示的文字
+textSize='10sp';--文字大小
+};
+};
+
+
+
+
+
+
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_width='60dp';--布局宽度
+layout_height='120dp';--布局高度
+layout_marginTop='15dp';--布局顶距
+layout_margin='15dp';--布局边距
+onClick=function()
+进入子页面("邮箱Set")
+ end,
+{
+ImageView;--图片控件
+src='icon/musicuu.png';--图片路径
+layout_width='60dp';--图片宽度
+layout_height='60dp';--图片高度
+scaleType='fitXY';--图片显示类型
+layout_marginTop='3dp';--布局顶距
+layout_gravity='center';--重力属性
+ColorFilter='#00FFAB91',--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='5dp';--布局顶距
+layout_gravity='center';--重力属性
+textColor='#FF6A6A6A';--文字颜色
+text='邮箱';--显示的文字
+textSize='10sp';--文字大小
+};
+};
+
+
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_width='60dp';--布局宽度
+layout_height='120dp';--布局高度
+layout_marginTop='15dp';--布局顶距
+layout_margin='15dp';--布局边距
+onClick=function()
+进入子页面("博客")
+ end,
+{
+ImageView;--图片控件
+src='icon/settings_1.png';--图片路径
+layout_width='60dp';--图片宽度
+layout_height='60dp';--图片高度
+scaleType='fitXY';--图片显示类型
+layout_marginTop='3dp';--布局顶距
+layout_gravity='center';--重力属性
+ColorFilter='#00FFAB91',--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='5dp';--布局顶距
+layout_gravity='center';--重力属性
+textColor='#FF6A6A6A';--文字颜色
+text='蔚蓝博客';--显示的文字
+textSize='10sp';--文字大小
+};
+};
+
+
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_width='60dp';--布局宽度
+layout_height='120dp';--布局高度
+layout_marginTop='15dp';--布局顶距
+layout_margin='15dp';--布局边距
+onClick=function()
+进入子页面("太鼓达人")
+ end,
+{
+ImageView;--图片控件
+src='icon/video_1.png';--图片路径
+layout_width='60dp';--图片宽度
+layout_height='60dp';--图片高度
+scaleType='fitXY';--图片显示类型
+layout_marginTop='3dp';--布局顶距
+layout_gravity='center';--重力属性
+ColorFilter='#00FFAB91',--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='5dp';--布局顶距
+layout_gravity='center';--重力属性
+textColor='#FF6A6A6A';--文字颜色
+text='太鼓达人';--显示的文字
+textSize='10sp';--文字大小
+};
+};
+
+
+};
+};
+};
+};
+--第三个卡片
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_margin='10dp';--布局边距
+gravity='left';--重力属性
+layout_width='100%w';--布局宽度
+{
+TextView;--文本控件
+gravity='left';--重力属性
+textColor='#FF000000';--文字颜色
+text='猜你喜欢';--显示的文字
+textSize='20sp';--文字大小
+layout_marginLeft='20dp';--布局左距
+};
+};
+{
+HorizontalScrollView,--横向滚动
+layout_width='fill';--宽
+layout_height='fill';--高
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+{
+LinearLayout;
+gravity='center';--重力属性
+orientation='horizontal';--重力属性
+layout_width='fill';--布局宽度
+layout_marginTop='-2%w';--布局顶距
+
+
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='5dp';--阴影属性
+layout_width='150dp';--卡片宽度
+CardBackgroundColor='#fff6f6f6';--卡片背景颜色
+layout_height='60dp';--卡片高度
+radius='15dp';--卡片圆角
+onClick=function()
+ 进入子页面('视频')
+
+end,
+{
+LinearLayout;
+gravity='center';--重力属性
+orientation='horizontal';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+background='shoyeset1.png';--布局背景颜色(或者图片路径)
+{
+TextView;--文本控件
+gravity='center';--重力属性
+textColor='#FFFFFFFF';--文字颜色
+text='看视频';--显示的文字
+textSize='15sp';--文字大小
+};
+};
+
+
+
+};
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='5dp';--阴影属性
+layout_width='150dp';--卡片宽度
+CardBackgroundColor='#fff6f6f6';--卡片背景颜色
+layout_height='60dp';--卡片高度
+radius='15dp';--卡片圆角
+onClick=function()
+进入子页面("小说")
+ end,
+{
+LinearLayout;
+gravity='center';--重力属性
+orientation='horizontal';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+background='shoyeset2.png';--布局背景颜色(或者图片路径)
+{
+TextView;--文本控件
+gravity='center';--重力属性
+textColor='#FFFFFFFF';--文字颜色
+text='看小说';--显示的文字
+textSize='15sp';--文字大小
+};
+};
+};
+
+
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='5dp';--阴影属性
+layout_width='150dp';--卡片宽度
+CardBackgroundColor='#fff6f6f6';--卡片背景颜色
+layout_height='60dp';--卡片高度
+radius='15dp';--卡片圆角
+onClick=function()
+ 进入子页面('漫画')
+
+end,
+{
+LinearLayout;
+gravity='center';--重力属性
+orientation='horizontal';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+background='shoyeset3.png';--布局背景颜色(或者图片路径)
+{
+TextView;--文本控件
+gravity='center';--重力属性
+textColor='#FFFFFFFF';--文字颜色
+text='看漫画';--显示的文字
+textSize='15sp';--文字大小
+};
+};
+};
+
+
+
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='5dp';--阴影属性
+layout_width='150dp';--卡片宽度
+CardBackgroundColor='#fff6f6f6';--卡片背景颜色
+layout_height='60dp';--卡片高度
+radius='15dp';--卡片圆角
+onClick=function()
+--[[
+import("android.app.ProgressDialog");
+--显示等待对话框
+弹出消息("请求授权中…") 
+--序列号
+local id =import "android.os.Build"
+local dd=id.SERIAL
+--android_i
+local set=import "android.provider.Settings"
+local id = set.System.getString(this.getContentResolver(), "android_id") 
+--拼接codeid
+local codeid =dd..id
+--收藏链接
+local url="https://greenchennai.github.io/serve-NAI/APPS/Loingin.txt"
+
+Http.get(url,nil,"UTF-8",nil,function(code,content,cookie,header)
+	if(code==200 and content)then
+		allowid=content:match("%{ID:(.-):END%}")
+		--判断收藏中是否有其对应ID
+		if(allowid:match(codeid))then 
+			--匹配成功执行事
+			弹出消息("服务器授权成功")
+            进入子页面("测试功能")
+		else
+		    --匹配失败执行事件
+           	对话框()
+			.设置标题("未授权")
+			.设置消息("服务器未对你授权\n\n如需添加请把授权ID复制给开发者申请进行授权")
+			.设置积极按钮("复制授权ID",function()
+			复制文本(codeid)
+			end)
+			.设置消极按钮("取消")
+			.显示()
+		end
+	else
+		if(code==-1)then
+			弹出消息("无法连接网络，请检查您的网络设置")
+		else
+			弹出消息("网络请求失败".." "..code)
+		end
+	end
+end)
+]]
+
+import "java.io.*"
+file,err=io.open("sdcard/Android/data/com.lunai.zuowo/Admin.GC")
+if err==nil then
+  print("开发者模式授权完成")
+  进入子页面("测试功能")
+else
+弹出消息("此功能仅开发者可以使用")
+ end
+ end,
+{
+LinearLayout;
+gravity='center';--重力属性
+orientation='horizontal';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+background='shoyeset4.png';--布局背景颜色(或者图片路径)
+{
+TextView;--文本控件
+gravity='center';--重力属性
+textColor='#FFFFFFFF';--文字颜色
+text='测试功能';--显示的文字
+textSize='15sp';--文字大小
+};
+};
+
+
+
+};
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='5dp';--阴影属性
+layout_width='150dp';--卡片宽度
+CardBackgroundColor='#fff6f6f6';--卡片背景颜色
+layout_height='60dp';--卡片高度
+radius='15dp';--卡片圆角
+onClick=function()
+ 进入子页面('工具箱')
+
+end,
+{
+LinearLayout;
+gravity='center';--重力属性
+orientation='horizontal';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+background='shoyeset5.png';--布局背景颜色(或者图片路径)
+{
+TextView;--文本控件
+gravity='center';--重力属性
+textColor='#FFFFFFFF';--文字颜色
+text='小工具';--显示的文字
+textSize='15sp';--文字大小
+};
+};
+
+
+
+};
+};
+};
+};
+--第四个卡片
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_margin='10dp';--布局边距
+gravity='left';--重力属性
+layout_width='100%w';--布局宽度
+{
+TextView;--文本控件
+gravity='left';--重力属性
+textColor='#FF000000';--文字颜色
+text='花瓣网-图片素材';--显示的文字
+textSize='20sp';--文字大小
+layout_marginLeft='20dp';--布局左距
+};
+};
+
+
+
+{
+LinearLayout;
+layout_width='fill';--布局宽度
+layout_height='240dp';--布局高度
+{
+PageView;
+layout_weight="1";
+id="hd";
+pages={
+
+{
+LinearLayout;
+gravity='center';--重力属性
+orientation='vertical';--重力属性
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='8dp';--阴影属性
+layout_width='fill';--卡片宽度
+CardBackgroundColor='#FFFFFF';--卡片背景颜色
+layout_height='200dp';--卡片高度
+radius='15dp';--卡片圆角
+onClick=function()
+                      进入子页面("花瓣")
+                      end,
+{
+ImageView;--图片控件
+layout_width='fill';--图片宽度
+layout_height='200dp';--图片高度
+scaleType='fitXY';--图片显示类型
+background='drawable/meitu.png';--布局背景颜色(或者图片路径)
+};
+};
+};
+
+
+};
+};
+};
+
+
+
+
+
+
+--第五个卡片
+{
+LinearLayout;
+orientation='vertical';--重力属性
+layout_margin='10dp';--布局边距
+gravity='left';--重力属性
+layout_width='100%w';--布局宽度
+{
+TextView;--文本控件
+gravity='left';--重力属性
+textColor='#FF000000';--文字颜色
+text='其他';--显示的文字
+textSize='20sp';--文字大小
+layout_marginLeft='20dp';--布局左距
+};
+};
+{
+LinearLayout;
+id="gy",
+orientation='horizontal';--重力属性
+layout_margin='10dp';--布局边距
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='2dp';--阴影属性
+layout_width='25%w';--卡片宽度
+CardBackgroundColor='#FFFFFFFF';--卡片背景颜色
+layout_height='25%w';--卡片高度
+radius='10dp';--卡片圆角
+{
+LinearLayout;
+gravity='center';--重力属性
+orientation='vertical';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+onClick=function()
+ 进入子页面('关于')
+
+end,
+{
+ImageView;--图片控件
+src='drawable/movie_96x96.png';--图片路径
+layout_width='50dp';--图片宽度
+layout_height='50dp';--图片高度
+scaleType='fitXY';--图片显示类型
+ColorFilter="#FF6A6A6A";--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='3dp';--布局顶距
+textColor='#FF6A6A6A';--文字颜色
+text='关于';--显示的文字
+textSize='15sp';--文字大小
+};
+};
+};
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='2dp';--阴影属性
+layout_width='25%w';--卡片宽度
+CardBackgroundColor='#FFFFFFFF';--卡片背景颜色
+layout_height='25%w';--卡片高度
+radius='10dp';--卡片圆角,
+onClick=function()
+
+进入子页面("赞助")
+
+end,
+{
+LinearLayout;
+id="zc",
+gravity='center';--重力属性
+orientation='vertical';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+{
+ImageView;--图片控件
+src='drawable/emoticon_cool_96x96.png';--图片路径
+layout_width='50dp';--图片宽度
+layout_height='50dp';--图片高度
+scaleType='fitXY';--图片显示类型
+ColorFilter="#FF6A6A6A";--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='3dp';--布局顶距
+textColor='#FF6A6A6A';--文字颜色
+text='支持';--显示的文字
+textSize='15sp';--文字大小
+};
+};
+};
+{
+CardView;--卡片控件
+layout_margin='10dp';--卡片边距
+elevation='2dp';--阴影属性
+layout_width='25%w';--卡片宽度
+CardBackgroundColor='#FFFFFFFF';--卡片背景颜色
+layout_height='25%w';--卡片高度
+radius='10dp';--卡片圆角
+onClick=function()
+联系QQ(2898283046)
+
+end,
+{
+LinearLayout;
+id="lx",
+gravity='center';--重力属性
+orientation='vertical';--重力属性
+layout_width='fill';--布局宽度
+layout_height='fill';--布局高度
+{
+ImageView;--图片控件
+src='drawable/twitter_96x96.png';--图片路径
+layout_width='50dp';--图片宽度
+layout_height='50dp';--图片高度
+scaleType='fitXY';--图片显示类型
+ColorFilter="#FF6A6A6A";--图片着色
+};
+{
+TextView;--文本控件
+layout_marginTop='3dp';--布局顶距
+textColor='#FF6A6A6A';--文字颜色
+text='联系';--显示的文字
+textSize='15sp';--文字大小
+};
+};
+};
+};
+
+};
+};
+};--首页布局
+
+
+};
+};
+};
+webView.addView(loadlayout(shamrock))
+
+--界面设置
+--初始化浏览器,加载网页
+
+状态栏亮色()
+--当状态栏颜色是白色时，可以用这个代码把状态栏的字体和图标设置为黑色
+--支持安卓6.0以上
+
+导航栏颜色("#FFFFFF")
+
+波纹(zc,0xFF342DF5)
+波纹(gy,0xFF342DF5)
+波纹(lx,0xFF342DF5)

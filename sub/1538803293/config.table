@@ -1,0 +1,486 @@
+{
+  ["web_control"]	= {
+      } ;
+  ["events"]	= {
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+浏览器对象,新标题=..." ;
+      ["程序启动"]	= "yt= \
+{\
+  LinearLayout;\
+  layout_height=\"fill\";\
+  orientation=\"vertical\";\
+  layout_width=\"fill\";\
+  backgroundColor=\"#fff9f9fb\";--背景色\
+  {\
+    LinearLayout;\
+    layout_width=\"fill\";\
+    orientation=\"horizontal\";\
+    layout_height=\"64dp\";--高度\
+    elevation=\"2dp\";--顶栏阴影\
+    background=\"#FF3962D3\";--顶栏颜色\
+    {\
+      LinearLayout;\
+      gravity=\"center\";\
+      layout_width=\"50dp\";\
+      layout_height=\"75dp\";\
+      id=\"fh\";\
+      {\
+        ImageView;\
+        layout_height=\"35dp\";\
+        src=\"../../drawable/chevron_left.png\";--返回按钮图片路径\
+        colorFilter=\"#ffffffff\";\
+        layout_width=\"20dp\";\
+      };\
+    };\
+    {\
+      LinearLayout;\
+      layout_height=\"150\";\
+      layout_weight=\"1\";\
+      orientation=\"horizontal\";\
+      {\
+        TextView;\
+        text=\"关于\";\
+        textColor=\"#ffffffff\"; \
+        layout_gravity=\"center\"; \
+        textSize=\"20sp\";\
+      };\
+    };\
+  };\
+  --logo\
+  {\
+    ImageView;\
+    src=\"../../icon.png\";--logo路径\
+    layout_height=\"20%h\";--高度\
+    layout_marginTop=\"0%w\";\
+    layout_width=\"20%w\";--宽度\
+    layout_gravity=\"center_vertical\";--重力\
+    id=\"touxiang\";\
+    layout_gravity=\"center_horizontal\";--重力\
+  };\
+  --应用名字\
+  {\
+    TextView;\
+    layout_gravity=\"center_horizontal\";--重力\
+    Text=\"蔚蓝\";\
+    textSize=\"18sp\";\
+    id=\"trans\"\
+  };\
+  --分割线-----\
+    {\
+    TextView;\
+    layout_gravity=\"center_horizontal\";--重力\
+    Text=\"作者:Green_Chennai\";\
+    textSize=\"12sp\";\
+    id=\"trans\"\
+  };\
+  --分割线\
+  {\
+    Button;\
+    layout_width=\"fill\";\
+    layout_height=\"5dp\";\
+    layout_gravity=\"center_horizontal\";\
+    backgroundColor=\"#ffeeefef\";\
+    style=\"?android:attr/buttonBarButtonStyle\";\
+  };\
+  {\
+    LinearLayout;\
+    orientation=\"horizontal\";\
+    layout_width=\"fill\";\
+    backgroundColor=\"#ffffffff\";\
+    {\
+      RelativeLayout,\
+      layout_width=\"fill\",\
+      layout_height=\"7.5%h\",\
+      style=\"?android:attr/borderlessButtonStyle\";\
+      id=\"lx\";\
+      {\
+        TextView;\
+        textColor=\"#ff2a2a2a\";\
+        Text=\"联系作者\";\
+        layout_alignParentLeft=true;\
+        textSize=\"18sp\";\
+      };\
+      {\
+        TextView;\
+        textColor=\"#ffacacac\",\
+        textSize=\"35sp\"; \
+        layout_marginTop=\"-10dp\";\
+        layout_alignParentRight=true;\
+      };\
+    },\
+  },\
+  --分割线-----\
+  {\
+    Button;\
+    layout_width=\"fill\";\
+    layout_height=\"1dp\";\
+    layout_gravity=\"center_horizontal\";\
+    backgroundColor=\"#ffeeefef\";\
+    style=\"?android:attr/buttonBarButtonStyle\";\
+  };\
+  {\
+    LinearLayout;\
+    orientation=\"horizontal\";\
+    layout_width=\"fill\";\
+    backgroundColor=\"#ffffffff\";\
+    {\
+      RelativeLayout,\
+      layout_width=\"fill\",\
+      layout_height=\"7.5%h\",\
+      style=\"?android:attr/borderlessButtonStyle\";\
+      id=\"gl\";\
+      {\
+        TextView;\
+        textColor=\"#ff2a2a2a\";\
+        Text=\"开发者模式\";\
+        layout_alignParentLeft=true;\
+        textSize=\"18sp\";\
+      };\
+      {\
+        TextView;\
+        textColor=\"#ffacacac\",\
+        textSize=\"35sp\"; \
+        layout_marginTop=\"-10dp\";\
+        layout_alignParentRight=true;\
+      };\
+    },\
+  },\
+  --分割线-----\
+     {\
+    Button;\
+    layout_width=\"fill\"; \
+    layout_height=\"1dp\";\
+    layout_gravity=\"center_horizontal\";\
+    backgroundColor=\"#ffeeefef\";\
+    style=\"?android:attr/buttonBarButtonStyle\";\
+  };\
+  {\
+    LinearLayout;\
+    layout_width=\"fill\";\
+    orientation=\"horizontal\";\
+    backgroundColor=\"#ffffffff\";\
+    {\
+      RelativeLayout,\
+      layout_width=\"fill\",\
+      layout_height=\"7.5%h\",\
+      style=\"?android:attr/borderlessButtonStyle\";\
+      id=\"fk\";\
+      {\
+        TextView; \
+        text=\"免责声明\";\
+        textSize=\"18sp\";\
+        textColor=\"#ff2a2a2a\";\
+        layout_alignParentLeft=true;\
+      };\
+      {\
+        TextView;\
+        textColor=\"#ffacacac\",\
+        textSize=\"35sp\";\
+        layout_marginTop=\"-11dp\";\
+        layout_alignParentRight=true;\
+      };\
+    },\
+  },\
+\
+  --分割线-----\
+  {\
+    Button;\
+    layout_width=\"fill\"; \
+    layout_height=\"1dp\";\
+    layout_gravity=\"center_horizontal\";\
+    backgroundColor=\"#ffeeefef\";\
+    style=\"?android:attr/buttonBarButtonStyle\";\
+  };\
+  {\
+    LinearLayout;\
+    layout_width=\"fill\";\
+    orientation=\"horizontal\";\
+    backgroundColor=\"#ffffffff\";\
+    {\
+      RelativeLayout,\
+      layout_width=\"fill\",\
+      layout_height=\"7.5%h\",\
+      style=\"?android:attr/borderlessButtonStyle\";\
+      id=\"cle\";\
+      {\
+        TextView; \
+        text=\"清除数据\";\
+        textSize=\"18sp\";\
+        textColor=\"#ff2a2a2a\";\
+        layout_alignParentLeft=true;\
+      };\
+      {\
+        TextView;\
+        textColor=\"#ffacacac\",\
+        textSize=\"35sp\";\
+        layout_marginTop=\"-11dp\";\
+        layout_alignParentRight=true;\
+      };\
+    },\
+  },\
+\
+  --分割线-----\
+\
+  {\
+    Button;\
+    layout_width=\"fill\";\
+    layout_height=\"1dp\";\
+    layout_gravity=\"center_horizontal\";\
+    backgroundColor=\"#ffeeefef\";\
+    style=\"?android:attr/buttonBarButtonStyle\";\
+  };\
+  {\
+    LinearLayout;\
+    layout_width=\"fill\";\
+    orientation=\"vertical\";\
+    gravity=\"center|bottom\";\
+    layout_marginBottom=\"5%w\";\
+    layout_height=\"fill\",\
+    {\
+      LinearLayout;\
+      layout_width=\"fill\";\
+      orientation=\"horizontal\";\
+      gravity=\"center|bottom\";\
+      {\
+        TextView,\
+        text=\"GitHub开源\",\
+        textSize=\"15sp\",\
+        textColor=\"#ff1363b5\",\
+        id=\"zuoz\";\
+      },\
+      {\
+        Button,\
+        text=\"|\",\
+        textSize=\"15sp\",\
+        layout_width=\"10%w\";\
+        style=\"?android:attr/borderlessButtonStyle\";\
+        textColor=\"#FF6699FF\",\
+        id=\"xian\";\
+      };\
+      {\
+        TextView,\
+        text=\"设备信息\",\
+        textSize=\"15sp\",\
+        textColor=\"#ff1363b5\",\
+        id=\"sb\";\
+      };\
+    };\
+    {\
+      TextView,\
+      text=\"Copright© 2019 By.Green_Chennai\",\
+      textSize=\"12sp\",\
+      textColor=\"#FFa3a1a1\",\
+      id=\"bq\";\
+    };\
+  };\
+};\
+activity.setContentView(loadlayout(yt))\
+\
+--设置返回按钮波纹\
+颜色=0x5FFFFFFF\
+id=fh\
+import \"android.content.res.ColorStateList\"\
+local attrsArray = {android.R.attr.selectableItemBackgroundBorderless} \
+local typedArray =activity.obtainStyledAttributes(attrsArray) \
+ripple=typedArray.getResourceId(0,0) \
+aoos=activity.Resources.getDrawable(ripple) \
+aoos.setColor(ColorStateList(int[0].class{int{}},int{颜色}))\
+id.setBackground(aoos.setColor(ColorStateList(int[0].class{int{}},int{颜色})))\
+\
+\
+--设置Sideslip点击事件\
+fh.onClick=function()\
+  退出页面()\
+end\
+zuoz.onClick=function()\
+    import \"android.content.*\"\
+    import \"android.net.*\"\
+    intent = Intent()\
+    intent.setAction(\"android.intent.action.VIEW\")\
+    content_url = Uri.parse(webView.url)\
+    intent.setData(content_url)\
+    choose= Intent.createChooser(intent,\"选择浏览器打开\")\
+    activity.startActivity(choose)\
+end\
+--设置按钮点击事件\
+sb.onClick=function()\
+device_model = Build.MODEL\
+\
+\
+    version_xtbb = Build.VERSION.RELEASE\
+    version_cpxh = Build.PRODUCT\
+    version_bbxx = Build.DISPLAY\
+    version_cpmc = Build.PRODUCT\
+    version_xtdz = Build.BRAND\
+    version_sbcs = Build.DEVICE\
+    version_kfdh = Build.VERSION.CODENAME\
+    version_sdk = Build.VERSION.SDK\
+    version_cpu = Build.CPU_ABI\
+    version_yjlx = Build.HARDWARE\
+    version_zjdz = Build.HOST\
+    version_id = Build.ID\
+    version_rom = Build.MANUFACTURER\
+\
+version_release = Build.VERSION.RELEASE \
+import \"android.provider.Settings$Secure\"\
+android_id = Secure.getString(activity.getContentResolver(), Secure.ANDROID_ID)\
+\
+对话框()\
+    .设置标题(\"全部参数\")\
+    .设置消息(\"手机型号：\"..device_model..\"\\n\\n安卓版本：\"..version_xtbb..\"\\n\\n产品型号：\"..version_cpxh..\"\\n\\n版本显示：\" ..version_bbxx..\"\\n\\n系统定制商：\"..version_xtdz..\"\\n\\n设备参数：\" ..version_sbcs..\"\\n\\n开发代号：\"..version_kfdh..\"\\n\\nSDK版本号:\"..version_sdk..\"\\n\\nCPU类型：\"..version_cpu..\"\\n\\n硬件类型：\" ..version_yjlx..\"\\n\\n主机地址:\"..version_zjdz..\"\\n\\n生产ID：\"..version_id..\"\\n\\nROM制造商：\"..version_rom..\"\\n\\n安卓ID：\"..android_id)\
+    .设置消极按钮(\"关闭\").设置积极按钮(\"复制设备ID\",function()\
+  复制文本(android_id)\
+  弹出消息(\"已复制设备ID\")\
+end)\
+.设置消极按钮(\"好的\")\
+.显示()\
+        end\
+      \
+ cle.onClick=function()\
+  对话框()\
+.设置标题(\"提示\")\
+.设置消息(\"如果你进行清空数据将会让软件重新加载一些数据，如无需要请勿使用，流量用多不怪我.\")\
+.设置积极按钮(\"确定\",function()\
+执行Shell(\"rm -rf /sdcard/\"..this.packageName)\
+执行Shell(\"rm -rf /storage/emulated/0/\"..this.packageName)\
+执行Shell(\"rm -rf /sdcard/Android/data/\"..this.packageName)\
+执行Shell(\"rm -rf /storage/emulated/0/Android/data/\"..this.packageName)\
+os.execute(\"pm clear \"..this.packageName)\
+end)\
+.设置消极按钮(\"取消\")\
+.显示()\
+end\
+\
+\
+\
+lx.onClick=function()\
+  联系QQ(2898283046)\
+end\
+\
+gl.onClick=function()\
+  import \"java.io.*\"\13\
+file,err=io.open(\"sdcard/Android/data/com.lunai.zuowo/Admin.GC\")\13\
+if err==nil then\13\
+  print(\"你已经处于开发者模式了\")\13\
+else\13\
+弹出消息(\"开启需要开发者密码\")\13\
+InputLayout={\13\
+  LinearLayout;\13\
+  orientation=\"vertical\";\13\
+  Focusable=true,\13\
+  FocusableInTouchMode=true,\13\
+  {\13\
+    EditText;\13\
+    hint=\"开发者密匙*#\";\13\
+    layout_marginTop=\"5dp\";\13\
+    layout_width=\"80%w\";\13\
+    layout_gravity=\"center\",\13\
+    id=\"edit\";\13\
+  };\13\
+};\13\
+\13\
+AlertDialog.Builder(this)\13\
+.setTitle(\"请输入密匙\")\13\
+.setView(loadlayout(InputLayout))\13\
+.setPositiveButton(\"确定\",{onClick=function(v) \13\
+    if(edit.Text==\"*#18018#*\")then--密码\13\
+      file = io.open(\"sdcard/Android/data/com.lunai.zuowo/Admin.GC\", \"w\") \
+      弹出消息(\"完成授权\")\13\
+      else\13\
+      弹出消息(\"错误的密匙\")\13\
+      end\13\
+    end})\13\
+.setNegativeButton(\"取消\",nil)\13\
+.show()\13\
+end\
+end\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+fk.onClick=function()\
+  对话框()\
+.设置标题(\"免责声明\")\
+.设置消息(\"代码\\n\\n使用他人模板和部分代码，进行过修改\\n\\n美工\\n\\n软件全部图标使用他人,配色及其其他均由个人完成\\n\\n免责\\n\\n软件大部分内容均来自互联网,本人仅提供部分内容以及软件框架进行使用\")\
+.设置积极按钮(\"确定\",function()\
+end)\
+.显示()\
+end\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+" ;
+      ["网页即将加载"]	= "" ;
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      } ;
+  ["web"]	= {
+      ["网页沉浸"]	= false ;
+      ["浏览器用户标识"]	= "默认" ;
+      ["启用长按菜单"]	= true ;
+      ["支持打开外部应用"]	= true ;
+      ["启用进度条"]	= true ;
+      ["启动网页"]	= "https://github.com/GreenChennai/Azure" ;
+      } ;
+  ["switch"]	= {
+      ["横屏"]	= false ;
+      ["显示状态栏"]	= false ;
+      ["启用启动图"]	= false ;
+      } ;
+  ["global_js"]	= "" ;
+  ["colors"]	= {
+      ["进度条"]	= "#00000000" ;
+      ["导航栏"]	= "#ffaa836c" ;
+      ["状态栏"]	= "#ffffffff" ;
+      } ;
+  } ;

@@ -1,0 +1,369 @@
+{
+  ["fltBtn"]	= {
+      ["点击事件"]	= "--悬浮按钮点击时执行的事件" ;
+      ["显示"]	= false ;
+      ["图标"]	= "" ;
+      } ;
+  ["toolbar"]	= {
+      ["启用搜索功能"]	= false ;
+      ["搜索框提示"]	= "" ;
+      ["输入栏模式"]	= true ;
+      ["icon_btns"]	= {
+          [1]	= {
+              ["onClick"]	= "网页后退()" ;
+              ["icon"]	= "chevron_left" ;
+              } ;
+          [2]	= {
+              ["onClick"]	= "刷新网页()" ;
+              ["icon"]	= "checkbox_blank_circle_outline" ;
+              } ;
+          [3]	= {
+              ["onClick"]	= "网页前进()" ;
+              ["icon"]	= "chevron_right" ;
+              } ;
+          } ;
+      ["搜索URL"]	= "" ;
+      ["menus"]	= {
+          [2]	= {
+              ["onClick"]	= "退出页面()" ;
+              ["name"]	= "退出子页" ;
+              } ;
+          [1]	= {
+              ["onClick"]	= "--url=webView.getUrl()\
+--进入子页面(\"电脑版页面\",{链接=url})\
+if Seu==nil then\13\
+  弹出消息(\"电脑模式\")\
+  webView.getSettings().setUserAgentString(\"Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko\")\
+  Seu=\"H\"\13\
+  刷新网页()\
+else\13\
+弹出消息(\"手机模式\")\
+  webView.getSettings().setUserAgentString(\"Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36\") \13\
+  Seu=nil\13\
+  刷新网页()\
+end\13" ;
+              ["name"]	= "电脑模式切换" ;
+              } ;
+          } ;
+      } ;
+  ["events"]	= {
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+浏览器对象，新标题=..." ;
+      ["网页即将加载"]	= "--浏览器即将加载新的网页时执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      ["程序启动"]	= "--程序启动时会执行的事件\
+webView.addJavascriptInterface({},\"JsInterface\")\
+\
+--退出二次确认\
+function onKeyDown(key)\
+  if key==4 then\
+    if drawerLayout.isDrawerOpen(3) then\
+      drawerLayout.closeDrawer(3)\
+    elseif webView.canGoBack() then\
+      webView.goBack()\
+    else\
+      对话框()\
+.设置标题(\"退出\")\
+.设置消息(\"你确定要退出工具箱吗?\")\
+.设置积极按钮(\"确定\",function()\
+  退出页面()\
+end)\
+.设置消极按钮(\"取消\")\
+.显示()\
+     end\
+        end\
+      return true\
+   end\
+   \
+   \
+   \
+   \
+   \
+   \
+ --侧滑\
+--程序启动时会执行的事件\
+--由JunSilck二次整合\
+function CircleButton(view,InsideColor,radiu)\
+  import \"android.graphics.drawable.GradientDrawable\"\
+  drawable = GradientDrawable() \
+  drawable.setShape(GradientDrawable.RECTANGLE) \
+  drawable.setColor(InsideColor)\
+  drawable.setCornerRadii({radiu,radiu,radiu,radiu,radiu,radiu,radiu,radiu});\
+  view.setBackgroundDrawable(drawable)\
+end\
+角度=50\
+控件id=sidebar\
+控件颜色=0xFFFFFFFF\
+CircleButton(控件id,控件颜色,角度)\
+\
+flt=sidebar.getLayoutParams( )\
+flt.setMargins(200, 200, 800, 450)\
+sidebar.setLayoutParams(flt)\
+--以上代码是侧滑栏圆角，高度，宽度，和上下边距的代码。\
+\
+--获取页面根布局\
+local lay=drawerLayout.getChildAt(1)\
+\
+--监听侧滑滑动事件\
+local pio=this.getWidth()*0.1\
+drawerLayout.setDrawerListener(DrawerLayout.DrawerListener{\
+  onDrawerSlide=function(v,i)\
+    lay.setScaleX(1-i/13.5).setScaleY(1-i/12.5)--页面缩放\
+    lay.setTranslationX((({0,0,1,0,-1})[v.LayoutParams.gravity])*(i*0.5*pio))--页面位移(其中那段奇怪的表是用于判断位移方向，不过依然仅支持左右侧滑)\
+    --sidebar.setScaleX(i).setScaleY(i)--侧滑栏缩放\
+  end})\
+--以上是侧滑栏做边距和缩放动画的代码\
+--可自行修改，出bug别找我\
+--可添加侧滑栏图片，上方还是全侧滑栏都可以，有需要圆角的地方请自行抠图\
+--希望珍惜别的工程开源" ;
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=..." ;
+      } ;
+  ["switch"]	= {
+      ["启用启动图"]	= false ;
+      ["显示状态栏"]	= false ;
+      ["横屏"]	= false ;
+      ["支持滑动页面"]	= false ;
+      } ;
+  ["global_js"]	= "/*让链接可点击*/var oHead1016 = document.getElementsByTagName('body').item(0); var oScript1016 = document.createElement(\"script\"); oScript1016.type = \"text/javascript\"; oScript1016.src=\"https://greasyfork.org/scripts/342-text-to-link/code/Text%20To%20link.user.js\"; oHead1016.appendChild( oScript1016);\
+/*强制缩放*/var sc = document.createElement(\"meta\");sc.setAttribute(\"name\", \"viewport\");sc.setAttribute(\"content\", \"width=device-width, initial-scale=1, user-scalable=yes\");document.head.appendChild(sc);\
+\
+\
+\
+\
+\
+// ==UserScript==\
+// @name        jsKillAD\
+// @namespace   jsKillAD\
+// @include     http://*\
+// @include     https://*\
+// @grant       none\
+// @version     1\
+// ==/UserScript==\
+(function () {\
+\9var bc = Array.prototype.forEach;//Callback\
+\
+\9function getStyle(o, s) {\
+\9\9if(o.style[s])//内联样式\
+\9\9\9return o.style[s];\
+\9\9else if(document.defaultView && document.defaultView.getComputedStyle){//DOM\
+\9\9\9//s = s.replace(/([A-Z])/g,'-$1').toLowerCase();\
+\9\9\9var x = document.defaultView.getComputedStyle(o,'');\
+\9\9\9return x.getPropertyValue(s);\
+\9\9}\
+\9}\
+\
+\9function testStyle(o) {\
+\9\9var s = getStyle(o, \"position\");\
+\9\9return s === \"fixed\" || s === \"absolute\";\
+\9}\
+/*\
+\9function sameDomain(o) {\
+\9\9try {\
+\9\9\9return o.document.body;\
+\9\9} catch (e) {\
+\9\9\9return  0;\
+\9\9}\
+\9}\
+*/\
+\9function isFloatLay(o) {\
+\9\9var x = o.offsetParent;\
+\9\9return !x || x.tagName === \"BODY\" || x.tagName === \"HTML\";\
+\9}\
+\
+\9function delNode(x) {\
+\9\9x.parentNode.removeChild(x);\
+\9}\
+\
+\9function scan(el) {\
+\9\9[\"iframe\", \"img\", \"object\", \"embed\", \"video\"].forEach(function(s) {\
+\9\9\9bc.call(el.getElementsByTagName(s), function(x) {\
+\9\9\9\9while (x) {\
+\9\9\9\9\9if (isFloatLay(x)) {\
+\9\9\9\9\9\9//要删除的层得同时满足二个条件\
+\9\9\9\9\9\9if (testStyle(x)) delNode(x);\
+\9\9\9\9\9\9break;\
+\9\9\9\9\9}\
+\9\9\9\9\9x = x.offsetParent;\
+\9\9\9\9}\
+\9\9\9});\
+\9\9});\
+\9}\
+\9/*\
+\9//扫描广告脚本\
+\9bc.call(document.getElementsByTagName(\"script\"), function(o) {\
+\9\9if (o.src && o.readyState !== \"complete\") delNode(o);\
+\9});\
+\9//没用哦,因为DIV中可能已经生成了元素\
+\9bc.call(document.querySelectorAll ? document.querySelectorAll(\"div>script\") : document.getElementsByTagName(\"script\"), function(x) {\
+\9\9x = x.parentNode;\
+\9\9if (x.childNodes.length === 1) delNode(x);\
+\9});\
+\9*/\
+\9document.addEventListener(\"DOMContentLoaded\", function(){scan(document);}, false);\
+\9bc.call(frames, function(x) {\
+\9\9try {\
+\9\9\9scan(x.contentDocument);\
+\9\9} catch (e) {}\
+\9});\
+})();" ;
+  ["web_control"]	= {
+      [1]	= {
+          ["remove_element"]	= "footer" ;
+          ["js"]	= "" ;
+          ["url"]	= "http://dwz.uixsj.cn/" ;
+          } ;
+      [2]	= {
+          ["remove_element"]	= "nav navbar-nav" ;
+          ["js"]	= "" ;
+          ["url"]	= "http://blast.uixsj.cn/" ;
+          } ;
+      [3]	= {
+          ["remove_element"]	= "nav navbar-nav" ;
+          ["js"]	= "" ;
+          ["url"]	= "http://tool.uixsj.cn/contrast/" ;
+          } ;
+      [4]	= {
+          ["remove_element"]	= "adsbygoogle" ;
+          ["js"]	= "" ;
+          ["url"]	= "http://waifu2x.udp.jp/" ;
+          } ;
+      [5]	= {
+          ["remove_element"]	= "swiper-slide,lang_row contact" ;
+          ["js"]	= "" ;
+          ["url"]	= "https://www.toolfk.com/" ;
+          } ;
+      [6]	= {
+          ["remove_element"]	= "copy-right,footer" ;
+          ["js"]	= "" ;
+          ["url"]	= "http://ifkdy.com/" ;
+          } ;
+      } ;
+  ["web"]	= {
+      ["浏览器用户标识"]	= "默认" ;
+      ["网页沉浸"]	= false ;
+      ["启用长按菜单"]	= true ;
+      ["支持打开外部应用"]	= true ;
+      ["启用进度条"]	= true ;
+      ["启动网页"]	= "https://tools.imiku.me/" ;
+      } ;
+  ["view_attribute"]	= {
+      ["搜索栏阴影强度"]	= "2dp" ;
+      ["侧滑栏宽度"]	= "240dp" ;
+      ["顶栏阴影强度"]	= "2dp" ;
+      ["搜索栏圆角弧度"]	= "2dp" ;
+      ["顶栏高度"]	= "50dp" ;
+      ["顶栏标题"]	= "工具" ;
+      } ;
+  ["sidebar"]	= {
+      ["启用"]	= true ;
+      ["items"]	= {
+          [1]	= {
+              ["name"]	= "Waifu2x-无损放大2倍图片" ;
+              ["icon"]	= "drawable/crop_portrait.png" ;
+              ["onClick"]	= "加载网页(\"http://waifu2x.udp.jp/\")" ;
+              } ;
+          [2]	= {
+              ["name"]	= "超好看壁纸" ;
+              ["icon"]	= "drawable/file_image.png" ;
+              ["onClick"]	= "加载网页(\"https://wall.alphacoders.com/?lang=Chinese\")" ;
+              } ;
+          [3]	= {
+              ["name"]	= "便携网盘" ;
+              ["icon"]	= "drawable/panda.png" ;
+              ["onClick"]	= "对话框()\
+.setCancelable(false)\
+.设置标题(\"注意\")\
+.设置消息(\"网盘内容只保留24小时，下载一次之后自动删除\")\
+.设置积极按钮(\"确定\",function()\
+  加载网页(\"https://send.firefox.com/\")\
+end)\
+.显示()" ;
+              } ;
+          [4]	= {
+              ["name"]	= "图标库" ;
+              ["icon"]	= "drawable/sort_alphabetical.png" ;
+              ["onClick"]	= "加载网页(\"https://icons8.cn/\")" ;
+              } ;
+          [5]	= {
+              ["name"]	= "程序工具箱" ;
+              ["icon"]	= "drawable/tooltip.png" ;
+              ["onClick"]	= "加载网页(\"https://www.toolfk.com/\")" ;
+              } ;
+          [6]	= {
+              ["name"]	= "电视直播网站" ;
+              ["icon"]	= "drawable/monitor.png" ;
+              ["onClick"]	= "加载网页(\"http://bddn.cn/zb.htm\")" ;
+              } ;
+          [7]	= {
+              ["name"]	= "拷贝兔" ;
+              ["icon"]	= "drawable/rabbit.png" ;
+              ["onClick"]	= "对话框()\
+.设置标题(\"提示\")\
+.设置消息(\"此网站可以实现文件在各个设备之间的互传\")\
+.设置积极按钮(\"前往\",function()\
+  加载网页(\"https://cp.ifval.com/\")\
+end)\
+.显示()" ;
+              } ;
+          [8]	= {
+              ["name"]	= "电影搜索" ;
+              ["icon"]	= "drawable/vector_square.png" ;
+              ["onClick"]	= "加载网页(\"http://ifkdy.com/\")" ;
+              } ;
+          [9]	= {
+              ["name"]	= "临时邮箱" ;
+              ["icon"]	= "drawable/email.png" ;
+              ["onClick"]	= "加载网页(\"http://24mail.chacuo.net/\")" ;
+              } ;
+          [10]	= {
+              ["name"]	= "网站常用工具" ;
+              ["icon"]	= "drawable/web.png" ;
+              ["onClick"]	= "加载网页(\"http://www.388g.com/network.html\")" ;
+              } ;
+          [11]	= {
+              ["name"]	= "在线抠图" ;
+              ["icon"]	= "drawable/panorama.png" ;
+              ["onClick"]	= "加载网页(\"https://www.remove.bg/\")" ;
+              } ;
+          [12]	= {
+              ["name"]	= "在线PS" ;
+              ["icon"]	= "drawable/checkbox_blank.png" ;
+              ["onClick"]	= "加载网页(\"https://m.kantu.com/\")" ;
+              } ;
+          [13]	= {
+              ["name"]	= "优质网站推荐" ;
+              ["icon"]	= "drawable/web.png" ;
+              ["onClick"]	= "加载网页(\"http://www.addog.vip/\")" ;
+              } ;
+          [14]	= {
+              ["name"]	= "奇怪君工具箱" ;
+              ["icon"]	= "drawable/dropbox.png" ;
+              ["onClick"]	= "加载网页(\"http://tool.uixsj.cn/\")" ;
+              } ;
+          } ;
+      ["启用顶部图片"]	= false ;
+      } ;
+  ["colors"]	= {
+      ["悬浮按钮"]	= "#ff33a7aa" ;
+      ["进度条"]	= "#00000000" ;
+      ["搜索栏背景"]	= "#ffffffff" ;
+      ["搜索栏提示文字"]	= "#77ffffff" ;
+      ["顶栏"]	= "#ff3962d3" ;
+      ["顶栏部件"]	= "#ffffffff" ;
+      ["顶栏部件触摸"]	= "#22ffffff" ;
+      ["搜索栏部件触摸"]	= "#44000000" ;
+      ["导航栏"]	= "#ff2c2e43" ;
+      ["搜索栏部件"]	= "#ff888888" ;
+      ["侧滑栏列表图标"]	= "#ff5f5f5f" ;
+      ["悬浮按钮图标"]	= "#ffffffff" ;
+      ["侧滑栏背景"]	= "#00000000" ;
+      ["侧滑栏列表文字"]	= "#ff6d6d6d" ;
+      } ;
+  } ;

@@ -1,0 +1,382 @@
+{
+  ["global_js"]	= "/*百度去跳转*/﻿ function goQuickly() {﻿ \9var searchResult = document.getElementsByClassName('result');﻿ \9for ( var i = 0; i < searchResult.length; i ++) {﻿ \9\9(function (i) {﻿ \9\9\9var theTruthInfo = searchResult[i].dataset.log;﻿ \9\9\9var theTruthUrl = theTruthInfo.match(/'mu'[\\s]*:[\\s]*'([\\d\\D]+)?'/);﻿ \9\9\9var titles = searchResult[i].getElementsByClassName('c-title');﻿ \9\9\9for ( var x = 0; x < titles.length; x ++) {﻿ \9\9\9\9titles[x].parentNode.href = theTruthUrl[1];﻿ \9\9\9\9titles[x].onclick = function (e) {﻿ \9\9\9\9\9location.href = theTruthUrl[1];﻿ \9\9\9\9};﻿ \9\9\9};﻿ \9\9\9searchResult[i].addEventListener('click',function () {﻿ \9\9\9\9location.href = theTruthUrl[1];﻿ \9\9\9},true);﻿ \9\9})(i);﻿ \9};﻿ };﻿ if ( location.href.match(\"m.baidu.com\") || location.href.match(\"www.baidu.com\") ) {﻿ \9goQuickly();﻿ };\
+\
+\
+/*强制缩放*/var sc = document.createElement(\"meta\");sc.setAttribute(\"name\", \"viewport\");sc.setAttribute(\"content\", \"width=device-width, initial-scale=1, user-scalable=yes\");document.head.appendChild(sc);\
+\
+\
+/*百度搜索去广告*/﻿ if(location.href.match(\"m.baidu.com\") || location.href.match(\"www.baidu.com\")){﻿ \9var oHead1014 = document.getElementsByTagName('body').item(0);﻿ \9var oScript1014 = document.createElement(\"script\");﻿ \9oScript1014.type = \"text/javascript\";﻿ \9oScript1014.src=\"https://greasyfork.org/scripts/24192-%E7%99%BE%E5%BA%A6%E5%B9%BF%E5%91%8A-%E9%A6%96%E5%B0%BE%E6%8E%A8%E5%B9%BF%E5%8F%8A%E5%8F%B3%E4%BE%A7%E5%B9%BF%E5%91%8A-%E6%B8%85%E7%90%86/code/%E7%99%BE%E5%BA%A6%E5%B9%BF%E5%91%8A(%E9%A6%96%E5%B0%BE%E6%8E%A8%E5%B9%BF%E5%8F%8A%E5%8F%B3%E4%BE%A7%E5%B9%BF%E5%91%8A)%E6%B8%85%E7%90%86.user.js\";﻿ \9oHead1014.appendChild( oScript1014);﻿ };\
+\
+\
+/*让链接可点击*/var oHead1016 = document.getElementsByTagName('body').item(0); var oScript1016 = document.createElement(\"script\"); oScript1016.type = \"text/javascript\"; oScript1016.src=\"https://greasyfork.org/scripts/342-text-to-link/code/Text%20To%20link.user.js\"; oHead1016.appendChild( oScript1016);\
+\
+\
+/*小净化*/function clearAds(elm, array_url) {﻿     var isUrl = false;﻿     for (var x = 0; x < array_url.length; x++) {﻿         if (location.href.match(array_url[x])) {﻿             isUrl = true;﻿         };﻿     };﻿     if (isUrl) {﻿         var head = document.getElementsByTagName('head')[0];﻿         var myStyle = document.createElement('style');﻿         myStyle.type = \"text/css\";﻿         myStyle.innerHTML = elm + \"{display:none !important;visibility:hidden !important;width:0 !important;height:0 !important;}\";﻿         head.appendChild(myStyle);﻿     };﻿ };﻿ clearAds(\".appTips,aside.tips\", [\"weibo.cn\"]);﻿ clearAds(\".index__openBtn__src-commonComponent-openBtn-,.index__openAppBtn__src-commonComponent-topArea-,.index__openAppBtn__src-videoPage-openAppBtn-,.index__downLoadBtn__src-videoPage-commentArea-\", [\"bilibili.com\"]);﻿ clearAds(\"div#index-card>div:last-child,.baiduapp-ad-body\", [\"m.baidu.com\", \"www.baidu.com\"]);﻿ clearAds(\".scroll-content>div[dpr]\", [\"taobao.com\"]);﻿ clearAds(\"div[data-stat-role],div#banner,div[sourcetype],div[data-spm]\", [\"youku.com\"]);﻿ clearAds(\"div[data-node],div.header-app,div.m-box-items[data-component],div.iqy-items[glue-component='page.home.fragment.focusMap'],[glue-node=ad]\", [\"iqiyi.com\"]);﻿ clearAds(\"div.topfr,div.ftwrap,div.footer-wrap,div.u-footer\",[\"music.163.com\"]);﻿ clearAds(\"div.download-app,div.js-downloadApp,div.download-box\",[\"m.kugou.com\"]);﻿ clearAds(\"div.download,div.open_app,div.topAppWrap\",[\"m.kuwo.cn\"]);﻿ clearAds(\".btn_download,div.top_bar\",[\"y.qq.com\"]);﻿ clearAds(\"#tip-download,.btn-download,.not-in-live>p,.download\",[\"m.panda.tv\"]);﻿ clearAds(\".h5_footer,.app_open,div.gift_block\",[\"chushou.tv\"]);﻿ clearAds(\".u-btn-down,#globalRightSide\",[\"m.huya.com\"]);﻿ clearAds(\"#js-fix-download,.btn-open-app,.download,.layout-ball,div.get-gift-box\",[\"m.douyu.com\"]);﻿ clearAds(\".scroll-download,div[data-cate=zhaomu],[data-label=h5-dw-app],[data-label=topbar-login],.footer-item-1\",[\"m.longzhu.com\"]);﻿ clearAds(\".MobileAppHeader-downloadLink,.OpenInApp,.OpenInAppButton\",[\"zhihu.com\"]);﻿ clearAds(\"div.download.clearfix,div.download-box,div.order-box\",[\"yinyuetai.com\"]);" ;
+  ["colors"]	= {
+      ["侧滑栏列表图标"]	= "#ff757575" ;
+      ["顶栏部件"]	= "#ffffffff" ;
+      ["搜索栏部件"]	= "#ff888888" ;
+      ["顶栏部件触摸"]	= "#22ffffff" ;
+      ["进度条"]	= "#00000000" ;
+      ["搜索栏提示文字"]	= "#80000000" ;
+      ["搜索栏背景"]	= "#ffffffff" ;
+      ["搜索栏部件触摸"]	= "#44000000" ;
+      ["导航栏"]	= "#ff2c2e43" ;
+      ["悬浮按钮"]	= "#ff33a7aa" ;
+      ["悬浮按钮图标"]	= "#ffffffff" ;
+      ["顶栏"]	= "#ff3962d3" ;
+      ["侧滑栏背景"]	= "#ffffffff" ;
+      ["侧滑栏列表文字"]	= "#ff333333" ;
+      } ;
+  ["view_attribute"]	= {
+      ["顶栏标题"]	= "浏览器" ;
+      ["搜索栏阴影强度"]	= "2dp" ;
+      ["顶栏阴影强度"]	= "2dp" ;
+      ["顶栏高度"]	= "50dp" ;
+      ["搜索栏圆角弧度"]	= "2dp" ;
+      ["侧滑栏宽度"]	= "240dp" ;
+      } ;
+  ["web_control"]	= {
+      } ;
+  ["events"]	= {
+      ["网页加载完毕"]	= "--网页加载完毕后执行的事件\
+\
+--接收参数\
+浏览器对象,网页链接=...\
+\
+设置顶栏标题(webView.title)" ;
+      ["收到新标题"]	= "--浏览器加载新页面并获得新标题时执行的事件\
+\
+--接收参数\
+浏览器对象，新标题=..." ;
+      ["网页即将加载"]	= "" ;
+      ["程序启动"]	= "--程序启动时会执行的事件\
+webView.addJavascriptInterface({},\"JsInterface\")\
+\
+\
+--退出二次确认\
+function onKeyDown(key)\
+  if key==4 then\
+    if drawerLayout.isDrawerOpen(3) then\
+      drawerLayout.closeDrawer(3)\
+    elseif webView.canGoBack() then\
+      webView.goBack()\
+    else\
+      对话框()\
+.设置标题(\"退出\")\
+.设置消息(\"你确定要退出浏览器吗?\")\
+.设置积极按钮(\"确定\",function()\
+  退出页面()\
+end)\
+.设置消极按钮(\"取消\")\
+.显示()\
+     end\
+        end\
+      return true\
+   end\
+   \
+   \
+   \
+   \
+   \
+   \
+ --侧滑\
+--程序启动时会执行的事件\
+--由JunSilck二次整合\
+function CircleButton(view,InsideColor,radiu)\
+  import \"android.graphics.drawable.GradientDrawable\"\
+  drawable = GradientDrawable() \
+  drawable.setShape(GradientDrawable.RECTANGLE) \
+  drawable.setColor(InsideColor)\
+  drawable.setCornerRadii({radiu,radiu,radiu,radiu,radiu,radiu,radiu,radiu});\
+  view.setBackgroundDrawable(drawable)\
+end\
+角度=50\
+控件id=sidebar\
+控件颜色=0xFFFFFFFF\
+CircleButton(控件id,控件颜色,角度)\
+\
+flt=sidebar.getLayoutParams( )\
+flt.setMargins(200, 200, 800, 450)\
+sidebar.setLayoutParams(flt)\
+--以上代码是侧滑栏圆角，高度，宽度，和上下边距的代码。\
+\
+--获取页面根布局\
+local lay=drawerLayout.getChildAt(1)\
+\
+--监听侧滑滑动事件\
+local pio=this.getWidth()*0.1\
+drawerLayout.setDrawerListener(DrawerLayout.DrawerListener{\
+  onDrawerSlide=function(v,i)\
+    lay.setScaleX(1-i/13.5).setScaleY(1-i/12.5)--页面缩放\
+    lay.setTranslationX((({0,0,1,0,-1})[v.LayoutParams.gravity])*(i*0.5*pio))--页面位移(其中那段奇怪的表是用于判断位移方向，不过依然仅支持左右侧滑)\
+    --sidebar.setScaleX(i).setScaleY(i)--侧滑栏缩放\
+  end})\
+--以上是侧滑栏做边距和缩放动画的代码\
+--可自行修改，出bug别找我\
+--可添加侧滑栏图片，上方还是全侧滑栏都可以，有需要圆角的地方请自行抠图\
+--希望珍惜别的工程开源\
+\
+\
+\
+\
+import\"tool.downpop\"\
+import \"android.text.format.Formatter\"\
+\
+webView.setDownloadListener{\
+  onDownloadStart=function(url,userAgent,contentDisposition,mimetype,contentLength)\
+    文件名=URLUtil.guessFileName(url, contentDisposition, mimeType);\
+    下载链接=url\
+    文件类型=mimetype\
+    文件大小=Formatter.formatFileSize(this, contentLength)\
+    存放地址=\"蔚蓝下载/文件\"\
+    downPop(url,文件名,存放地址)\
+  end\
+}\
+\
+function onKeyDown(key,event)\
+  if(key==4)then\
+    if pop~= nil then\
+      downPop()\
+    elseif(webView.canGoBack()) then\
+      webView.goBack()\
+    else\
+      退出页面()\
+    end\
+    return true\
+  end\
+end\
+\
+\
+泡沫对话框(199)\
+.设置标题(\"提醒\")\
+.设置消息(\"推荐使用外置软件 KiWi浏览器\")\
+.设置积极按钮(\"前往下载\",function()\
+  加载网页(\"https://www.coolapk.com/apk/com.kiwibrowser.browser\")\
+end)\
+.设置消极按钮(\"取消\",function()\
+  对话框()\
+.设置标题(\"消息\")\
+.设置消息(\"如果需要可以点击右上角菜单\")\
+.设置积极按钮(\"确定\")\
+.显示()\
+  end)\
+.显示()\
+\
+\
+\
+\
+\
+\
+\
+\
+" ;
+      } ;
+  ["sidebar"]	= {
+      ["items"]	= {
+          [4]	= {
+              ["onClick"]	= "加载网页(\"https://cn.bing.com/\")" ;
+              ["icon"]	= "drawable/bing.png" ;
+              ["name"]	= "必应搜索" ;
+              } ;
+          [1]	= {
+              ["onClick"]	= "items={}加载网页(\"网页链接\")\
+table.insert(items,\"MCBBS我的世界中文论坛\")\
+table.insert(items,\"MT破解论坛\")\
+table.insert(items,\"吾爱破解论坛\")\
+table.insert(items,\"NGA精英玩家论坛\")\
+\
+AlertDialog.Builder(this)\
+.setTitle(\"选择论坛\")\
+.setItems(items,{onClick=function(l,v)\
+if items[v+1]==\"MCBBS我的世界中文论坛\" then\
+加载网页(\"http://www.mcbbs.net/forum.php\")\
+elseif items[v+1]==\"MT破解论坛\" then\
+加载网页(\"https://bbs.binmt.cc/forum.php\")\
+elseif items[v+1]==\"NGA精英玩家论坛\" then\
+加载网页(\"https://www.52pojie.cn/\")\
+elseif items[v+1]==\"http://bbs.nga.cn/\" then\
+\
+\
+end\
+end})\
+.show()\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+" ;
+              ["icon"]	= "drawable/account_multiple.png" ;
+              ["name"]	= "优质论坛" ;
+              } ;
+          [2]	= {
+              ["onClick"]	= "对话框()\
+.设置标题(\"提示\")\
+.设置消息(\"该页面并不是游戏，是一个模拟游戏的聊天网站，各大二次元爱好者在这里，在这里你也可以玩游戏，获得道具，也可以分享你喜欢的音乐\")\
+.设置积极按钮(\"知道\",function()\
+  加载网页(\"http://iirose.com/#s=5ae51d627e8a3\")\
+end)\
+.显示()" ;
+              ["icon"]	= "drawable/barley.png" ;
+              ["name"]	= "蔷薇花圆" ;
+              } ;
+          [3]	= {
+              ["onClick"]	= "加载网页(\"www.google.cn\")" ;
+              ["icon"]	= "drawable/google.png" ;
+              ["name"]	= "谷歌搜索" ;
+              } ;
+          } ;
+      ["启用"]	= true ;
+      ["启用顶部图片"]	= false ;
+      } ;
+  ["toolbar"]	= {
+      ["icon_btns"]	= {
+          [1]	= {
+              ["icon"]	= "chevron_left" ;
+              ["onClick"]	= "网页后退()" ;
+              } ;
+          [2]	= {
+              ["icon"]	= "checkbox_blank_circle_outline" ;
+              ["onClick"]	= "刷新网页()" ;
+              } ;
+          [3]	= {
+              ["icon"]	= "chevron_right" ;
+              ["onClick"]	= "网页前进()" ;
+              } ;
+          } ;
+      ["menus"]	= {
+          [1]	= {
+              ["name"]	= "打开网页" ;
+              ["onClick"]	= "--输入对话框\
+InputLayout={\
+  LinearLayout;\
+  orientation=\"vertical\";\
+  Focusable=true,\
+  FocusableInTouchMode=true,\
+  {\
+    EditText;\
+    hint=\"https://www.baidu.com\";\
+    layout_marginTop=\"0dp\";\
+    layout_width=\"80%w\";\
+    layout_gravity=\"center\",\
+    id=\"edit\";\
+  };\
+};\
+\
+AlertDialog.Builder(this)\
+.setTitle(\"请输入链接\")\
+.setView(loadlayout(InputLayout))\
+.setPositiveButton(\"确定\",{onClick=function(v) \
+    if(edit.Text==\"\")then\
+      加载网页(\"https://www.baidu.com\")\
+      else\
+   \
+      \
+      \
+      \
+      \
+\
+  加载网页(edit.Text)\
+\
+\
+\
+end\
+\
+\
+\
+\
+      \
+    \
+    \
+    end})\
+.setNegativeButton(\"取消\",nil)\
+.show()\
+" ;
+              } ;
+          [2]	= {
+              ["name"]	= "切换横竖屏" ;
+              ["onClick"]	= "if SetHSP==nil then\13\
+  --横屏\13\
+  activity.setRequestedOrientation(0); \13\
+  SetHSP=\"H\"\13\
+else\13\
+  --竖屏\13\
+  activity.setRequestedOrientation(1); \13\
+  SetHSP=nil\13\
+end\13\
+--复制粘贴到各种点击事件里\13" ;
+              } ;
+          [3]	= {
+              ["name"]	= "切换电脑模式" ;
+              ["onClick"]	= "--url=webView.getUrl()对话框()\
+--进入子页面(\"电脑版页面\",{链接=url})\
+if Seu==nil then\13\
+  弹出消息(\"当前为电脑模式\")\
+  webView.getSettings().setUserAgentString(\"Mozilla/5.0 (Windows NT 6.1; WOW64; Trident/7.0; rv:11.0) like Gecko\")\
+  Seu=\"H\"\13\
+  刷新网页()\
+else\13\
+弹出消息(\"当前为手机模式\")\
+  webView.getSettings().setUserAgentString(\"Mozilla/5.0 (Linux; Android 4.4.2; Nexus 4 Build/KOT49H) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/34.0.1847.114 Mobile Safari/537.36\") \13\
+  Seu=nil\13\
+  刷新网页()\
+end\13\
+\
+\
+" ;
+              } ;
+          [4]	= {
+              ["name"]	= "外置浏览器打开" ;
+              ["onClick"]	= "    import \"android.content.*\"\
+    import \"android.net.*\"\
+    intent = Intent()\
+    intent.setAction(\"android.intent.action.VIEW\")\
+    content_url = Uri.parse(webView.url)\
+    intent.setData(content_url)\
+    choose= Intent.createChooser(intent,\"选择浏览器打开\")\
+    activity.startActivity(choose)" ;
+              } ;
+          [5]	= {
+              ["name"]	= "KiWi浏览器下载" ;
+              ["onClick"]	= "加载网页(\"https://www.coolapk.com/apk/com.kiwibrowser.browser\")" ;
+              } ;
+          [6]	= {
+              ["name"]	= "退出子页" ;
+              ["onClick"]	= "退出页面()" ;
+              } ;
+          } ;
+      ["搜索框提示"]	= "" ;
+      ["输入栏模式"]	= false ;
+      ["搜索URL"]	= "" ;
+      ["启用搜索功能"]	= false ;
+      } ;
+  ["web"]	= {
+      ["启动网页"]	= "https://www.thelunai.ml/MainZ" ;
+      ["启用进度条"]	= true ;
+      ["启用长按菜单"]	= true ;
+      ["支持打开外部应用"]	= true ;
+      ["浏览器用户标识"]	= "默认" ;
+      ["网页沉浸"]	= false ;
+      } ;
+  ["switch"]	= {
+      ["显示状态栏"]	= true ;
+      ["启用启动图"]	= false ;
+      ["支持滑动页面"]	= false ;
+      ["横屏"]	= false ;
+      } ;
+  ["fltBtn"]	= {
+      ["图标"]	= "" ;
+      ["点击事件"]	= "--悬浮按钮点击时执行的事件" ;
+      ["显示"]	= false ;
+      } ;
+  } ;
